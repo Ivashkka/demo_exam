@@ -3,11 +3,25 @@
 <p>based on https://sysahelper.ru/course/view.php?id=10#section-0</p>
 <br>
 <br>
+<p><b>apt package requirements:</b></p>
+<pre>net-tools
+openssh-server
+tcpdump
+vim
+screen
+frr
+strongswan
+</pre>
+<p>you can run <code>apt install < apt_requirements.txt</code> to install all at once</p>
 <br>
 <p><b>network topology</b></p>
 <img src="./demo.svg">
+<br>
+<br>
 <p><b>VirtualBox network configuration</b></p>
 <img src="./demo_nat_network.png">
+<br>
+<br>
 <p><b>Vms network configuration</b></p>
 <img src="./demo_vms.png">
 <br>
