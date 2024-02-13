@@ -1,0 +1,43 @@
+######## INTERFACES CONFIGURATION #######
+source /etc/network/interfaces.d/*
+
+##### The loopback network interface ####
+
+auto lo
+iface lo inet loopback
+
+
+######## All startup interfaces #########
+auto enp0s3 enp0s8 tun0
+
+######## The ISP-BR-R interface #########
+
+iface enp0s3 inet static
+address 172.16.2.2/30
+gateway 172.16.2.1
+iface enp0s3 inet6 static
+address 2000:2::2/124
+gateway 2000:2::1
+
+
+
+######## The BR-R-SRV interface #########
+
+iface enp0s8 inet static
+address 192.168.2.1/24
+iface enp0s8 inet6 static
+address 2000:2::1:1/112
+
+
+
+######### The HQ-R-BR-R tunnel ##########
+
+iface tun0 inet tunnel
+address 10.0.5.2
+netmask 255.255.255.252
+mode gre
+local 172.16.2.2
+endpoint 172.16.1.2
+
+iface tun0 inet6 static
+address 2001::2/124
