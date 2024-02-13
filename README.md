@@ -26,6 +26,100 @@ strongswan
 <img src="./demo_vms.png">
 <br>
 <br>
+<p><b>source_cfg tree:</b></p>
+<pre>
+  source_cfg/
+    ├── BR-R
+    │   ├── etc
+    │   │   ├── frr
+    │   │   │   ├── daemons
+    │   │   │   └── frr.conf
+    │   │   ├── gai.conf
+    │   │   ├── group
+    │   │   ├── ipsec.conf
+    │   │   ├── ipsec.secrets
+    │   │   ├── modules
+    │   │   ├── network
+    │   │   │   └── interfaces
+    │   │   ├── nftables.conf
+    │   │   ├── passwd
+    │   │   ├── ssh
+    │   │   │   └── sshd_config
+    │   │   └── sysctl.conf
+    │   └── root
+    │       └── .bashrc
+    │
+    ├── BR-SRV
+    │   ├── etc
+    │   │   ├── gai.conf
+    │   │   ├── group
+    │   │   ├── network
+    │   │   │   └── interfaces
+    │   │   ├── passwd
+    │   │   └── ssh
+    │   │     └── sshd_config
+    │   └── root
+    │       └── .bashrc
+    │
+    ├── CLI
+    │   ├── etc
+    │   │   ├── gai.conf
+    │   │   ├── group
+    │   │   ├── network
+    │   │   │   └── interfaces
+    │   │   ├── passwd
+    │   │   └── ssh
+    │   │       └── sshd_config
+    │   └── root
+    │       └── .bashrc
+    │
+    ├── HQ-R
+    │   ├── etc
+    │   │   ├── frr
+    │   │   │   ├── daemons
+    │   │   │   └── frr.conf
+    │   │   ├── gai.conf
+    │   │   ├── group
+    │   │   ├── ipsec.conf
+    │   │   ├── ipsec.secrets
+    │   │   ├── modules
+    │   │   ├── network
+    │   │   │   └── interfaces
+    │   │   ├── nftables.conf
+    │   │   ├── passwd
+    │   │   ├── ssh
+    │   │   │   └── sshd_config
+    │   │   └── sysctl.conf
+    │   └── root
+    │       └── .bashrc
+    │
+    ├── HQ-SRV
+    │   ├── etc
+    │   │   ├── gai.conf
+    │   │   ├── group
+    │   │   ├── network
+    │   │   │   └── interfaces
+    │   │   ├── passwd
+    │   │   └── ssh
+    │   │       └── sshd_config
+    │   └── root
+    │       └── .bashrc
+    │
+    └── ISP
+        ├── etc
+        │   ├── gai.conf
+        │   ├── group
+        │   ├── modules
+        │   ├── network
+        │   │   └── interfaces
+        │   ├── nftables.conf
+        │   ├── passwd
+        │   ├── ssh
+        │   │   └── sshd_config
+        │   └── sysctl.conf
+        └── root
+            └── .bashrc
+</pre>
 <br>
 
 **Finished modules:**
