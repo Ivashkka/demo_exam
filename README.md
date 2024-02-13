@@ -3,6 +3,9 @@
 <p>based on https://sysahelper.ru/course/view.php?id=10#section-0</p>
 <br>
 <br>
+<p><b>clone</b> repo to linux machine:</p>
+<p><code>apt install git; git clone https://github.com/Ivashkka/demo_exam.git</code></p>
+<br>
 <p><b>apt package requirements:</b></p>
 <pre>net-tools
 openssh-server
