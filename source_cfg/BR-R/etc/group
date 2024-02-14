@@ -18,7 +18,7 @@ voice:x:22:
 cdrom:x:24:ivanadm
 floppy:x:25:ivanadm
 tape:x:26:
-sudo:x:27:ivanadm
+sudo:x:27:ivanadm,network-admin,branch-admin,admin
 audio:x:29:ivanadm
 dip:x:30:ivanadm
 www-data:x:33:
@@ -54,3 +54,6 @@ nam:x:111:
 tcpdump:x:112:
 frrvty:x:113:frr
 frr:x:114:
+network-admin:x:1001:
+branch-admin:x:1002:
+admin:x:1003:
