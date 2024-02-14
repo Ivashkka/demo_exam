@@ -147,10 +147,10 @@ source_cfg/
 - [ ] Module 1:
   - [x] 1.1 VirtualBox adapters + vms interface configurations
   - [x] 1.2 IPSec / GRE ipv4 tunnel + OSPFV2 / OSPFV3
-  - [ ] 1.3 Internal DHCP + DHCP6 on HQ-R
-  - [ ] 1.4 Local Users
-  - [ ] 1.5 iperf3 results
-  - [ ] 1.6 /etc backup scripts
+  - [x] 1.3 Internal DHCP + DHCP6 on HQ-R
+  - [x] 1.4 Local Users
+  - [x] 1.5 iperf3 results
+  - [x] 1.6 /etc backup scripts
   - [ ] 1.7 SSH setup
   - [ ] 1.8 nftables inet filter
 - [ ] Module 2
