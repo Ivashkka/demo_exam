@@ -18,7 +18,7 @@ voice:x:22:
 cdrom:x:24:ivanadm
 floppy:x:25:ivanadm
 tape:x:26:
-sudo:x:27:ivanadm
+sudo:x:27:ivanadm,admin
 audio:x:29:ivanadm
 dip:x:30:ivanadm
 www-data:x:33:
@@ -65,3 +65,4 @@ Debian-gdm:x:122:
 ivanadm:x:1000:
 gnome-initial-setup:x:995:
 tcpdump:x:123:
+admin:x:1001:
