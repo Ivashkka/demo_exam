@@ -14,6 +14,10 @@ vim
 screen
 frr
 strongswan
+isc-dhcp-server
+isc-dhcp-common
+radvd
+iperf3
 </pre>
 <p>you can run <code>apt install < apt_requirements.txt</code> to install all at once</p>
 <br>
@@ -29,99 +33,113 @@ strongswan
 <img src="./demo_vms.png">
 <br>
 <br>
+<p><b>ISP-HQ-R iperf3 results</b></p>
+<img src="./demo-iperf3.png">
+<br>
 <p><b>source_cfg tree:</b></p>
 <pre>
-  source_cfg/
-    ├── BR-R
-    │   ├── etc
-    │   │   ├── frr
-    │   │   │   ├── daemons
-    │   │   │   └── frr.conf
-    │   │   ├── gai.conf
-    │   │   ├── group
-    │   │   ├── ipsec.conf
-    │   │   ├── ipsec.secrets
-    │   │   ├── modules
-    │   │   ├── network
-    │   │   │   └── interfaces
-    │   │   ├── nftables.conf
-    │   │   ├── passwd
-    │   │   ├── ssh
-    │   │   │   └── sshd_config
-    │   │   └── sysctl.conf
-    │   └── root
-    │       └── .bashrc
-    │
-    ├── BR-SRV
-    │   ├── etc
-    │   │   ├── gai.conf
-    │   │   ├── group
-    │   │   ├── network
-    │   │   │   └── interfaces
-    │   │   ├── passwd
-    │   │   └── ssh
-    │   │     └── sshd_config
-    │   └── root
-    │       └── .bashrc
-    │
-    ├── CLI
-    │   ├── etc
-    │   │   ├── gai.conf
-    │   │   ├── group
-    │   │   ├── network
-    │   │   │   └── interfaces
-    │   │   ├── passwd
-    │   │   └── ssh
-    │   │       └── sshd_config
-    │   └── root
-    │       └── .bashrc
-    │
-    ├── HQ-R
-    │   ├── etc
-    │   │   ├── frr
-    │   │   │   ├── daemons
-    │   │   │   └── frr.conf
-    │   │   ├── gai.conf
-    │   │   ├── group
-    │   │   ├── ipsec.conf
-    │   │   ├── ipsec.secrets
-    │   │   ├── modules
-    │   │   ├── network
-    │   │   │   └── interfaces
-    │   │   ├── nftables.conf
-    │   │   ├── passwd
-    │   │   ├── ssh
-    │   │   │   └── sshd_config
-    │   │   └── sysctl.conf
-    │   └── root
-    │       └── .bashrc
-    │
-    ├── HQ-SRV
-    │   ├── etc
-    │   │   ├── gai.conf
-    │   │   ├── group
-    │   │   ├── network
-    │   │   │   └── interfaces
-    │   │   ├── passwd
-    │   │   └── ssh
-    │   │       └── sshd_config
-    │   └── root
-    │       └── .bashrc
-    │
-    └── ISP
-        ├── etc
-        │   ├── gai.conf
-        │   ├── group
-        │   ├── modules
-        │   ├── network
-        │   │   └── interfaces
-        │   ├── nftables.conf
-        │   ├── passwd
-        │   ├── ssh
-        │   │   └── sshd_config
-        │   └── sysctl.conf
-        └── root
-            └── .bashrc
+source_cfg/
+├── BR-R
+│   ├── etc
+│   │   ├── frr
+│   │   │   ├── daemons
+│   │   │   └── frr.conf
+│   │   ├── gai.conf
+│   │   ├── group
+│   │   ├── ipsec.conf
+│   │   ├── ipsec.secrets
+│   │   ├── modules
+│   │   ├── network
+│   │   │   └── interfaces
+│   │   ├── nftables.conf
+│   │   ├── passwd
+│   │   ├── ssh
+│   │   │   └── sshd_config
+│   │   ├── sysctl.conf
+│   │   └── systemd
+│   │       └── system
+│   │           ├── etc_bckp.service
+│   │           └── etc_bckp.timer
+│   └── root
+│       ├── .bashrc
+│       └── etc_bckp.sh
+├── BR-SRV
+│   ├── etc
+│   │   ├── gai.conf
+│   │   ├── group
+│   │   ├── network
+│   │   │   └── interfaces
+│   │   ├── passwd
+│   │   └── ssh
+│   │       └── sshd_config
+│   └── root
+│       └── .bashrc
+├── CLI
+│   ├── etc
+│   │   ├── gai.conf
+│   │   ├── group
+│   │   ├── network
+│   │   │   └── interfaces
+│   │   ├── passwd
+│   │   └── ssh
+│   │       └── sshd_config
+│   └── root
+│       └── .bashrc
+├── HQ-R
+│   ├── etc
+│   │   ├── default
+│   │   │   └── isc-dhcp-server
+│   │   ├── dhcp
+│   │   │   ├── dhcpd6.conf
+│   │   │   └── dhcpd.conf
+│   │   ├── frr
+│   │   │   ├── daemons
+│   │   │   └── frr.conf
+│   │   ├── gai.conf
+│   │   ├── group
+│   │   ├── ipsec.conf
+│   │   ├── ipsec.secrets
+│   │   ├── modules
+│   │   ├── network
+│   │   │   └── interfaces
+│   │   ├── nftables.conf
+│   │   ├── passwd
+│   │   ├── radvd.conf
+│   │   ├── ssh
+│   │   │   └── sshd_config
+│   │   ├── sysctl.conf
+│   │   └── systemd
+│   │       └── system
+│   │           ├── etc_bckp.service
+│   │           └── etc_bckp.timer
+│   └── root
+│       ├── .bashrc
+│       └── etc_bckp.sh
+├── HQ-SRV
+│   ├── etc
+│   │   ├── gai.conf
+│   │   ├── group
+│   │   ├── network
+│   │   │   └── interfaces
+│   │   ├── passwd
+│   │   └── ssh
+│   │       └── sshd_config
+│   └── root
+│       └── .bashrc
+└── ISP
+    ├── etc
+    │   ├── gai.conf
+    │   ├── group
+    │   ├── modules
+    │   ├── network
+    │   │   └── interfaces
+    │   ├── nftables.conf
+    │   ├── passwd
+    │   ├── ssh
+    │   │   └── sshd_config
+    │   └── sysctl.conf
+    └── root
+        └── .bashrc
 </pre>
 <br>
 

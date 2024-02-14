@@ -5,3 +5,7 @@ vim
 screen
 frr
 strongswan
+isc-dhcp-server
+isc-dhcp-common
+radvd
+iperf3
