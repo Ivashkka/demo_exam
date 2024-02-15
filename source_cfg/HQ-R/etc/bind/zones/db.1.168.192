@@ -1,0 +1,14 @@
+;
+; ###################### HQ REVERSE #######################
+;
+$TTL	1D
+@	IN	SOA	ns1.hq.work. root.hq.work. (
+			2024021501	; Serial
+			12H		; Refresh
+			1H		; Retry
+			1W		; Expire
+			1H )		; Negative Cache TTL
+;
+@	IN	NS	ns1.hq.work.
+1	IN	PTR	ns1.hq.work.
+2	IN	PTR	hq-srv.hq.work.

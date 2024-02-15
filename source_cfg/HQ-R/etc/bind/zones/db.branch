@@ -1,0 +1,17 @@
+;
+; ###################### HQ ZONE #######################
+;
+$TTL	1D
+@	IN	SOA	ns1.branch.work. root.branch.work. (
+			2024021501	; Serial
+			12H		; Refresh
+			1H		; Retry
+			1W		; Expire
+			1H )		; Negative Cache TTL
+;
+@	IN	NS	ns1
+ns1	IN	A	192.168.2.1
+ns1	IN	AAAA	2000:2::1:1
+br-r	IN	CNAME	ns1
+br-srv	IN	A	192.168.2.2
+br-srv	IN	AAAA	2000:2::1:2

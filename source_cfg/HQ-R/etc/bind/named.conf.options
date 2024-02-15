@@ -1,0 +1,18 @@
+
+############ BIND9 OPTIONS ##############
+
+options {
+	directory "/var/cache/bind";
+	
+	recursion yes;
+	forward first;
+
+	forwarders {
+		8.8.8.8;
+		8.8.4.4;
+	};
+	
+	listen-on { any; };
+	listen-on-v6 { any; };
+	allow-query { any; };
+};

@@ -1,0 +1,30 @@
+
+########## BIND9 ZONES ###########
+
+
+zone "hq.work" {
+	type master; file "/etc/bind/zones/db.hq";
+};
+
+zone "branch.work" {
+	type master; file "/etc/bind/zones/db.branch";
+};
+
+
+######### Reverse zones ##########
+
+zone "1.168.192.in-addr.arpa" {
+	type master; file "/etc/bind/zones/db.1.168.192";
+};
+
+zone "2.168.192.in-addr.arpa" {
+	type master; file "/etc/bind/zones/db.2.168.192";
+};
+
+zone "1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.0.0.0.0.2.ip6.arpa" {
+    type master; file "/etc/bind/zones/db.1..1.2000";
+};
+
+zone "1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.2.0.0.0.0.0.0.2.ip6.arpa" {
+    type master; file "/etc/bind/zones/db.1..2.2000";
+};
