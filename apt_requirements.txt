@@ -9,3 +9,5 @@ isc-dhcp-server
 isc-dhcp-common
 radvd
 iperf3
+bind9
+bind9-utils

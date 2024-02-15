@@ -18,6 +18,8 @@ isc-dhcp-server
 isc-dhcp-common
 radvd
 iperf3
+bind9
+bind9-utils
 </pre>
 <p>you can run <code>apt install < apt_requirements.txt</code> to install all at once</p>
 <br>
@@ -53,6 +55,7 @@ source_cfg/
 │   │   │   └── interfaces
 │   │   ├── nftables.conf
 │   │   ├── passwd
+│   │   ├── resolv.conf
 │   │   ├── ssh
 │   │   │   └── sshd_config
 │   │   ├── sysctl.conf
@@ -69,9 +72,15 @@ source_cfg/
 │   │   ├── group
 │   │   ├── network
 │   │   │   └── interfaces
+│   │   ├── NetworkManager
+│   │   │   └── NetworkManager.conf
 │   │   ├── passwd
-│   │   └── ssh
-│   │       └── sshd_config
+│   │   ├── resolv.conf
+│   │   ├── ssh
+│   │   │   └── sshd_config
+│   │   └── systemd
+│   │       └── system
+│   │           └── systemd-networkd-wait-online.service
 │   └── root
 │       └── .bashrc
 ├── CLI
@@ -87,6 +96,16 @@ source_cfg/
 │       └── .bashrc
 ├── HQ-R
 │   ├── etc
+│   │   ├── bind
+│   │   │   ├── named.conf.local
+│   │   │   ├── named.conf.options
+│   │   │   └── zones
+│   │   │       ├── db.1..1.2000
+│   │   │       ├── db.1.168.192
+│   │   │       ├── db.1..2.2000
+│   │   │       ├── db.2.168.192
+│   │   │       ├── db.branch
+│   │   │       └── db.hq
 │   │   ├── default
 │   │   │   └── isc-dhcp-server
 │   │   ├── dhcp
@@ -105,13 +124,15 @@ source_cfg/
 │   │   ├── nftables.conf
 │   │   ├── passwd
 │   │   ├── radvd.conf
+│   │   ├── resolv.conf
 │   │   ├── ssh
 │   │   │   └── sshd_config
 │   │   ├── sysctl.conf
 │   │   └── systemd
 │   │       └── system
 │   │           ├── etc_bckp.service
-│   │           └── etc_bckp.timer
+│   │           ├── etc_bckp.timer
+│   │           └── isc-dhcp-server.service
 │   └── root
 │       ├── .bashrc
 │       └── etc_bckp.sh
@@ -121,9 +142,13 @@ source_cfg/
 │   │   ├── group
 │   │   ├── network
 │   │   │   └── interfaces
+│   │   ├── nftables.conf
 │   │   ├── passwd
-│   │   └── ssh
-│   │       └── sshd_config
+│   │   ├── ssh
+│   │   │   └── sshd_config
+│   │   └── systemd
+│   │       └── system
+│   │           └── systemd-networkd-wait-online.service
 │   └── root
 │       └── .bashrc
 └── ISP
@@ -144,15 +169,18 @@ source_cfg/
 <br>
 
 **Finished modules:**
-- [ ] Module 1:
+- [x] Module 1:
   - [x] 1.1 VirtualBox adapters + vms interface configurations
   - [x] 1.2 IPSec / GRE ipv4 tunnel + OSPFV2 / OSPFV3
   - [x] 1.3 Internal DHCP + DHCP6 on HQ-R
   - [x] 1.4 Local Users
   - [x] 1.5 iperf3 results
   - [x] 1.6 /etc backup scripts
-  - [ ] 1.7 SSH setup
-  - [ ] 1.8 nftables inet filter
-- [ ] Module 2
+  - [x] 1.7 SSH setup
+  - [x] 1.8 nftables inet filter
+- [ ] Module 2:
+  - [x] 2.0 nftables NAT
+  - [x] 2.1 bind9 setup
+  - [ ] 2.2 NTP setup
 - [ ] Module 3
 qwer
