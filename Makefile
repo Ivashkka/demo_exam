@@ -1,16 +1,21 @@
 
 ######### auto config Makefile ##########
 
+hostname:=$(shell hostname)
+CFGDIR:=$(shell pwd)/source_cfg/$(hostname)/*
+APTREQ:=$(shell pwd)/source_cfg/$(hostname)-req.txt
+DISTDIR:=/
+
 all: install
 
 install:
 	#check if hostname configured right
-	if [ ! -d "source_cfg/$(hostname)" ]; then echo "Wrong hostname, change it using hostnamectl! exiting"; exit 1; fi
+	if [ ! -d $(CFGDIR) ]; then echo "Wrong hostname, change it using hostnamectl! exiting"; exit 1; fi
 	echo Auto configuring $(hostname)...
 	#install all requirements
-	apt install < source_cfg/$(hostname)-req.txt
+	xargs apt -y install < $(APTREQ)
 	#cp all files to /
-	cp -r source_cfg/$(hostname) /
+	cp -r $(CFGDIR) $(DISTDIR)
 	#reload systemd units
 	systemctl daemon-reload
 	#reboot host
