@@ -3,8 +3,12 @@
 <p>based on https://sysahelper.ru/course/view.php?id=10#section-0</p>
 <br>
 <br>
-<p><b>clone</b> repo to linux machine:</p>
-<p><code>apt install git; git clone https://github.com/Ivashkka/demo_exam.git</code></p>
+<p><b>AUTO CONFIGURE HOST:</b></p>
+<p>clone repo to linux machine:</p>
+<p><code>apt install git make; git clone https://github.com/Ivashkka/demo_exam.git; cd demo_exam</code></p>
+<p>start autoconfigure script:</p>
+<p><code>make install</code></p>
+<p>host will be rebooted</p>
 <br>
 <p><b>all apt package requirements:</b></p>
 <pre>net-tools
@@ -65,15 +69,20 @@ source_cfg/
 │   │   │   │   ├── etc_bckp.service
 │   │   │   │   ├── etc_bckp.timer
 │   │   │   │   ├── multi-user.target.wants
-│   │   │   │   │   ├── frr.service
-│   │   │   │   │   └── strongswan-starter.service
+│   │   │   │   │   ├── frr.service -> /etc/systemd/system/multi-user.target.wants/frr.service
+│   │   │   │   │   └── strongswan-starter.service -> /etc/systemd/system/multi-user.target.wants/strongswan-starter.service
 │   │   │   │   └── timers.target.wants
-│   │   │   │       └── etc_bckp.timer
+│   │   │   │       └── etc_bckp.timer -> /etc/systemd/system/etc_bckp.timer
 │   │   │   └── timesyncd.conf
 │   │   └── timezone
+│   ├── home
+│   │   ├── admin
+│   │   ├── branch-admin
+│   │   ├── ivanadm
+│   │   └── network-admin
 │   └── root
-│       ├── .bashrc
 │       └── etc_bckp.sh
+├── BR-R-req.txt
 ├── BR-SRV
 │   ├── etc
 │   │   ├── gai.conf
@@ -91,8 +100,12 @@ source_cfg/
 │   │   │   │   └── systemd-networkd-wait-online.service
 │   │   │   └── timesyncd.conf
 │   │   └── timezone
+│   ├── home
+│   │   ├── branch-admin
+│   │   ├── ivanadm
+│   │   └── network-admin
 │   └── root
-│       └── .bashrc
+├── BR-SRV-req.txt
 ├── CLI
 │   ├── etc
 │   │   ├── gai.conf
@@ -106,8 +119,11 @@ source_cfg/
 │   │   │   ├── systemd-networkd-wait-online.service
 │   │   │   └── timesyncd.conf
 │   │   └── timezone
+│   ├── home
+│   │   ├── admin
+│   │   └── ivanadm
 │   └── root
-│       └── .bashrc
+├── CLI-req.txt
 ├── HQ-R
 │   ├── etc
 │   │   ├── bind
@@ -150,18 +166,21 @@ source_cfg/
 │   │   │       ├── etc_bckp.timer
 │   │   │       ├── isc-dhcp-server.service
 │   │   │       ├── multi-user.target.wants
-│   │   │       │   ├── chrony.service
-│   │   │       │   ├── frr.service
-│   │   │       │   ├── isc-dhcp-server.service
-│   │   │       │   ├── named.service
-│   │   │       │   ├── radvd.service
-│   │   │       │   └── strongswan-starter.service
+│   │   │       │   ├── chrony.service -> /etc/systemd/system/chrony.service
+│   │   │       │   ├── frr.service -> /etc/systemd/system/frr.service
+│   │   │       │   ├── isc-dhcp-server.service -> /etc/systemd/system/isc-dhcp-server.service
+│   │   │       │   ├── named.service -> /etc/systemd/system/named.service
+│   │   │       │   ├── radvd.service -> /etc/systemd/system/radvd.service
+│   │   │       │   └── strongswan-starter.service -> /etc/systemd/system/strongswan-starter.service
 │   │   │       └── timers.target.wants
-│   │   │           └── etc_bckp.timer
+│   │   │           └── etc_bckp.timer -> /etc/systemd/system/etc_bckp.timer
 │   │   └── timezone
+│   ├── home
+│   │   ├── ivanadm
+│   │   └── network-admin
 │   └── root
-│       ├── .bashrc
 │       └── etc_bckp.sh
+├── HQ-R-req.txt
 ├── HQ-SRV
 │   ├── etc
 │   │   ├── gai.conf
@@ -177,23 +196,30 @@ source_cfg/
 │   │   │   │   └── systemd-networkd-wait-online.service
 │   │   │   └── timesyncd.conf
 │   │   └── timezone
+│   ├── home
+│   │   ├── admin
+│   │   └── ivanadm
 │   └── root
-│       └── .bashrc
-└── ISP
-    ├── etc
-    │   ├── gai.conf
-    │   ├── group
-    │   ├── modules
-    │   ├── network
-    │   │   └── interfaces
-    │   ├── nftables.conf
-    │   ├── passwd
-    │   ├── ssh
-    │   │   └── sshd_config
-    │   ├── sysctl.conf
-    │   └── timezone
-    └── root
-        └── .bashrc
+├── HQ-SRV-req.txt
+├── ISP
+│   ├── etc
+│   │   ├── gai.conf
+│   │   ├── group
+│   │   ├── modules
+│   │   ├── network
+│   │   │   └── interfaces
+│   │   ├── nftables.conf
+│   │   ├── passwd
+│   │   ├── ssh
+│   │   │   └── sshd_config
+│   │   ├── sysctl.conf
+│   │   ├── systemd
+│   │   │   └── system
+│   │   └── timezone
+│   ├── home
+│   │   └── ivanadm
+│   └── root
+└── ISP-req.txt
 </pre>
 <br>
 
