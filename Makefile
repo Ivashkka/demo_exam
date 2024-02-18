@@ -21,6 +21,9 @@ install:
 	cp -r $(CFGDIR)/* $(DISTDIR)
 	#reload systemd units
 	systemctl daemon-reload
+	#enable common systemd services
+	systemctl enable nftables.service
+	systemctl enable ssh.service
 	#reboot host
 	reboot
 clean:
