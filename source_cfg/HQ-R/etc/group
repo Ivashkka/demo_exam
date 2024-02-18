@@ -56,3 +56,5 @@ frrvty:x:113:frr
 frr:x:114:
 network-admin:x:1001:
 iperf3:x:115:
+bind:x:116:
+_chrony:x:117:
