@@ -6,7 +6,7 @@
 <p><b>clone</b> repo to linux machine:</p>
 <p><code>apt install git; git clone https://github.com/Ivashkka/demo_exam.git</code></p>
 <br>
-<p><b>apt package requirements:</b></p>
+<p><b>all apt package requirements:</b></p>
 <pre>net-tools
 openssh-server
 tcpdump
@@ -20,6 +20,7 @@ radvd
 iperf3
 bind9
 bind9-utils
+chrony
 </pre>
 <p>you can run <code>apt install < apt_requirements.txt</code> to install all at once</p>
 <br>
@@ -59,10 +60,17 @@ source_cfg/
 │   │   ├── ssh
 │   │   │   └── sshd_config
 │   │   ├── sysctl.conf
-│   │   └── systemd
-│   │       └── system
-│   │           ├── etc_bckp.service
-│   │           └── etc_bckp.timer
+│   │   ├── systemd
+│   │   │   ├── system
+│   │   │   │   ├── etc_bckp.service
+│   │   │   │   ├── etc_bckp.timer
+│   │   │   │   ├── multi-user.target.wants
+│   │   │   │   │   ├── frr.service
+│   │   │   │   │   └── strongswan-starter.service
+│   │   │   │   └── timers.target.wants
+│   │   │   │       └── etc_bckp.timer
+│   │   │   └── timesyncd.conf
+│   │   └── timezone
 │   └── root
 │       ├── .bashrc
 │       └── etc_bckp.sh
@@ -78,9 +86,11 @@ source_cfg/
 │   │   ├── resolv.conf
 │   │   ├── ssh
 │   │   │   └── sshd_config
-│   │   └── systemd
-│   │       └── system
-│   │           └── systemd-networkd-wait-online.service
+│   │   ├── systemd
+│   │   │   ├── system
+│   │   │   │   └── systemd-networkd-wait-online.service
+│   │   │   └── timesyncd.conf
+│   │   └── timezone
 │   └── root
 │       └── .bashrc
 ├── CLI
@@ -90,8 +100,12 @@ source_cfg/
 │   │   ├── network
 │   │   │   └── interfaces
 │   │   ├── passwd
-│   │   └── ssh
-│   │       └── sshd_config
+│   │   ├── ssh
+│   │   │   └── sshd_config
+│   │   ├── systemd
+│   │   │   ├── systemd-networkd-wait-online.service
+│   │   │   └── timesyncd.conf
+│   │   └── timezone
 │   └── root
 │       └── .bashrc
 ├── HQ-R
@@ -106,6 +120,8 @@ source_cfg/
 │   │   │       ├── db.2.168.192
 │   │   │       ├── db.branch
 │   │   │       └── db.hq
+│   │   ├── chrony
+│   │   │   └── chrony.conf
 │   │   ├── default
 │   │   │   └── isc-dhcp-server
 │   │   ├── dhcp
@@ -128,11 +144,21 @@ source_cfg/
 │   │   ├── ssh
 │   │   │   └── sshd_config
 │   │   ├── sysctl.conf
-│   │   └── systemd
-│   │       └── system
-│   │           ├── etc_bckp.service
-│   │           ├── etc_bckp.timer
-│   │           └── isc-dhcp-server.service
+│   │   ├── systemd
+│   │   │   └── system
+│   │   │       ├── etc_bckp.service
+│   │   │       ├── etc_bckp.timer
+│   │   │       ├── isc-dhcp-server.service
+│   │   │       ├── multi-user.target.wants
+│   │   │       │   ├── chrony.service
+│   │   │       │   ├── frr.service
+│   │   │       │   ├── isc-dhcp-server.service
+│   │   │       │   ├── named.service
+│   │   │       │   ├── radvd.service
+│   │   │       │   └── strongswan-starter.service
+│   │   │       └── timers.target.wants
+│   │   │           └── etc_bckp.timer
+│   │   └── timezone
 │   └── root
 │       ├── .bashrc
 │       └── etc_bckp.sh
@@ -146,9 +172,11 @@ source_cfg/
 │   │   ├── passwd
 │   │   ├── ssh
 │   │   │   └── sshd_config
-│   │   └── systemd
-│   │       └── system
-│   │           └── systemd-networkd-wait-online.service
+│   │   ├── systemd
+│   │   │   ├── system
+│   │   │   │   └── systemd-networkd-wait-online.service
+│   │   │   └── timesyncd.conf
+│   │   └── timezone
 │   └── root
 │       └── .bashrc
 └── ISP
@@ -162,7 +190,8 @@ source_cfg/
     │   ├── passwd
     │   ├── ssh
     │   │   └── sshd_config
-    │   └── sysctl.conf
+    │   ├── sysctl.conf
+    │   └── timezone
     └── root
         └── .bashrc
 </pre>
