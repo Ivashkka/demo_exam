@@ -1,0 +1,55 @@
+exit
+enable 
+configure terminal 
+router ospf 1
+exit
+configure terminal 
+router ospf 1
+q
+configure terminal 
+router ospf 1
+exit
+configure terminal 
+router ospf
+ospf router-id 10.0.5.1
+passive-interface default 
+network 192.168.1.0/24 area 0
+network 10.0.5.0/30 area 0
+exit
+interface tun0
+no ip ospf network broadcast 
+no ip ospf passive 
+exit
+wr mem
+do wr mem
+router ospf6
+ospf6 router-id 10.0.5.1
+exit 
+ospf6 router-id 10.0.5.1
+router ospf6
+exit
+interface tun0 
+ipv6 ospf6 area 0
+exit
+interface enp0s8 
+ipv6 ospf6 area 0
+exit
+router ospf6
+exit
+ipv6 router ospf6
+ipv6 router ospf
+router ospf6
+exit
+router ospfv3
+router ospf6
+passive-interface default
+exit
+router ospf6
+exit
+router ospf
+exit
+do wr mem
+exit
+show ip ospf neighbor 
+show ip route ospf 
+exit
