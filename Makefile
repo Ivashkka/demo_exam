@@ -17,7 +17,7 @@ install:
 	#cp all files to /
 	cp -r $(CFGDIR)/* $(DISTDIR)
 	#change some special file owner info
-	if [ -d /etc/bind ]; then chown -R bind:bind /etc/bind; fi
+	if [ -d /etc/bind ]; then chown -R root:bind /etc/bind; fi
 	if [ -d /etc/frr ]; then chown -R frr:frr /etc/frr; fi
 	#reload systemd units
 	systemctl daemon-reload
