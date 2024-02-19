@@ -14,13 +14,11 @@ install:
 	echo Auto configuring $(hostname)...
 	#install all requirements
 	xargs apt -y install < $(APTREQ)
-	#change some special file owner info
-	cp $(CFGDIR)/etc/passwd /etc/passwd
-	cp $(CFGDIR)/etc/group /etc/group
-	if [ -d $(CFGDIR)/etc/bind ]; then chown -R bind:bind $(CFGDIR)/etc/bind; fi
-	if [ -d $(CFGDIR)/etc/frr ]; then chown -R frr:frr $(CFGDIR)/etc/frr; fi
 	#cp all files to /
 	cp -r $(CFGDIR)/* $(DISTDIR)
+	#change some special file owner info
+	if [ -d /etc/bind ]; then chown -R bind:bind /etc/bind; fi
+	if [ -d /etc/frr ]; then chown -R frr:frr /etc/frr; fi
 	#reload systemd units
 	systemctl daemon-reload
 	#enable common systemd services
