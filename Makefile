@@ -12,11 +12,13 @@ install:
 	#check if hostname configured right
 	if [ ! -d $(CFGDIR) ]; then echo "Wrong hostname, change it using hostnamectl! exiting"; exit 1; fi
 	echo Auto configuring $(hostname)...
-	#change some special file owner info
-	if [ ! -d $(CFGDIR)/etc/bind ]; then chown -R bind:bind $(CFGDIR)/etc/bind; fi
-	if [ ! -d $(CFGDIR)/etc/frr ]; then chown -R frr:frr $(CFGDIR)/etc/frr; fi
 	#install all requirements
 	xargs apt -y install < $(APTREQ)
+	#change some special file owner info
+	cp $(CFGDIR)/etc/passwd /etc/passwd
+	cp $(CFGDIR)/etc/group /etc/group
+	if [ -d $(CFGDIR)/etc/bind ]; then chown -R bind:bind $(CFGDIR)/etc/bind; fi
+	if [ -d $(CFGDIR)/etc/frr ]; then chown -R frr:frr $(CFGDIR)/etc/frr; fi
 	#cp all files to /
 	cp -r $(CFGDIR)/* $(DISTDIR)
 	#reload systemd units
