@@ -236,6 +236,10 @@ source_cfg/
 - [ ] Module 2:
   - [x] 2.0 nftables NAT
   - [x] 2.1 bind9 setup
-  - [ ] 2.2 NTP setup
+  - [x] 2.2 NTP setup
+  - [ ] 2.3 Samba domain
+  - [ ] 2.4 NFS/SMB
+  - [ ] 2.5 LAMP stack
+  - [ ] 2.6 MediaWiki + docker
 - [ ] Module 3
 qwer
