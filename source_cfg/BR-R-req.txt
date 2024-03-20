@@ -1,7 +1,2 @@
-net-tools
-openssh-server
-tcpdump
-vim
-screen
-frr
-strongswan
+bind-utils
+nftables
