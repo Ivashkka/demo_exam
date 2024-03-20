@@ -3,6 +3,8 @@
 <p>based on https://sysahelper.ru/course/view.php?id=10#section-0</p>
 <br>
 <br>
+<p><b>DEBIAN VERSION</b></p>
+<br>
 <p><b>AUTO CONFIGURE HOST:</b></p>
 <p>clone repo to linux machine:</p>
 <p><code>apt install git make; git clone https://github.com/Ivashkka/demo_exam.git; cd demo_exam</code></p>
