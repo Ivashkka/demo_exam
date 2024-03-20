@@ -3,7 +3,7 @@
 <p>based on https://sysahelper.ru/course/view.php?id=10#section-0</p>
 <br>
 <br>
-<h3>DEBIAN VERSION</h3>
+<h3 align="center">========= DEBIAN VERSION =========</h3>
 <br>
 <p><b>AUTO CONFIGURE HOST:</b></p>
 <p>clone repo to linux machine:</p>
