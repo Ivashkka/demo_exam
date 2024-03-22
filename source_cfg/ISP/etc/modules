@@ -1,0 +1,11 @@
+# /etc/modules-load.d/modules.conf: kernel modules to load at boot time.
+#
+# This file should contain the names of kernel modules that are
+# to be loaded at boot time, one per line.  Comments begin with
+# a `#', and everything on the line after them are ignored.
+
+# This reads all module names listed in /etc/modules-load.d/?*.conf and
+# loads them into the kernel. This follows roughly Debian's way to
+# handle modules, but uses a directory of fragments instead of a
+# single /etc/modules file. */
+tun
