@@ -1,0 +1,22 @@
+deploy: # VirtualBox vms and network topology
+  hosts: [ISP, CLI, HQ-R, BR-R, HQ-SRV, BR-SRV]
+  map:
+  - ISP:
+    - CLI
+    - HQ-R:
+      - HQ-SRV
+    - BR-R:
+      - BR-SRV
+    - ~NAT # nat adapter to host machine
+  packages:
+  - net-tools: ALL
+  - bind-utils: ALL
+  - nftables: ALL
+  - openssh-server: ALL
+  - NetworkManager: [HQ-SRV]
+  - NetworkManager-tui: [HQ-SRV]
+  - frr: [HQ-R, BR-R]
+  - strongswan: [HQ-R, BR-R]
+  - dhcp-server: [HQ-R]
+  - radvd: [HQ-R]
+  - iperf3: [HQ-R, ISP]

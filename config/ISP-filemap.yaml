@@ -1,0 +1,53 @@
+filemap:
+  markers:
+  # interfaces
+  - name: CLI-IF
+    ru-desc: Интерфейс для соединения с CLI
+    en-desc: Interface for CLI connection
+    value: enp0s3
+  - name: HQ-R-IF
+    ru-desc: Интерфейс для соединения с HQ-R
+    en-desc: Interface for HQ-R connection
+    value: enp0s8
+  - name: BR-R-IF
+    ru-desc: Интерфейс для соединения с BR-R
+    en-desc: Interface for BR-R connection
+    value: enp0s9
+  - name: ~NAT-IF
+    ru-desc: Интерфейс для соединения с CLI
+    en-desc: Interface for CLI connection
+    value: enp0s10
+  # addresses
+  - name: CLI-IF-IP4
+    ru-desc: Ipv4 адрес для интерфейса $CLI-IF
+    en-desc: Ipv4 address for $CLI-IF interface
+    value: 11.11.11.1/24
+  - name: CLI-IF-IP6
+    ru-desc: Ipv6 адрес для интерфейса $CLI-IF
+    en-desc: Ipv6 address for $CLI-IF interface
+    value: 2000:1111::1/124
+  - name: HQ-R-IF-IP4
+    ru-desc: Ipv4 адрес для интерфейса $HQ-R-IF
+    en-desc: Ipv4 address for $HQ-R-IF interface
+    value: 22.22.22.1/24
+  - name: HQ-R-IF-IP6
+    ru-desc: Ipv6 адрес для интерфейса $HQ-R-IF
+    en-desc: Ipv6 address for $HQ-R-IF interface
+    value: 2000:1::1/124
+  - name: BR-R-IF-IP4
+    ru-desc: Ipv4 адрес для интерфейса $BR-R-IF
+    en-desc: Ipv4 address for $BR-R-IF interface
+    value: 33.33.33.1/24
+  - name: BR-R-IF-IP6
+    ru-desc: Ipv6 адрес для интерфейса $BR-R-IF
+    en-desc: Ipv6 address for $BR-R-IF interface
+    value: 2000:2::1/124
+  # dns
+  - name: DNSSRV1
+    ru-desc: Ipv4 адрес первого DNS сервера
+    en-desc: Ipv4 address as first dns
+    value: 8.8.8.8
+  - name: DNSSRV2
+    ru-desc: Ipv4 адрес второго DNS сервера
+    en-desc: Ipv4 address as second dns
+    value: 8.8.4.4
