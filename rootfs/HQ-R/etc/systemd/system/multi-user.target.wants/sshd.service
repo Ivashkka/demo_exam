@@ -1,0 +1,15 @@
+[Unit]
+Description=OpenSSH server daemon
+After=syslog.target network.target
+
+[Service]
+EnvironmentFile=/etc/sysconfig/sshd
+ExecStartPre=/usr/bin/ssh-keygen -A
+ExecStartPre=/usr/sbin/sshd -t
+ExecStart=/usr/sbin/sshd -D $EXTRAOPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,13 @@
+[Unit]
+Description=DHCPv6 Server Daemon
+Documentation=man:dhcpd(8) man:dhcpd.conf(5)
+After=network.target
+After=time-sync.target
+
+[Service]
+ExecStartPre=/etc/chroot.d/dhcpd6.all
+EnvironmentFile=/etc/sysconfig/dhcpd6
+ExecStart=/usr/sbin/dhcpd -6 -f --no-pid $CHROOT $DHCPDARGS
+
+[Install]
+WantedBy=multi-user.target

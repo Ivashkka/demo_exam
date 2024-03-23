@@ -1,0 +1,13 @@
+[Unit]
+Description=strongSwan IPsec implementation
+After=syslog.target network.target
+
+[Service]
+Type=forking
+PIDFile=/var/run/starter.charon.pid
+ExecStart=/usr/sbin/ipsec start
+ExecStop=/usr/sbin/ipsec stop
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

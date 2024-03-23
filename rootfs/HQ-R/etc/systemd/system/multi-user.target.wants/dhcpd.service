@@ -1,0 +1,13 @@
+[Unit]
+Description=DHCPv4 Server Daemon
+Documentation=man:dhcpd(8) man:dhcpd.conf(5)
+After=network.target
+After=time-sync.target
+
+[Service]
+ExecStartPre=/etc/chroot.d/dhcpd.all
+EnvironmentFile=/etc/sysconfig/dhcpd
+ExecStart=/usr/sbin/dhcpd -4 -f --no-pid $CHROOT $DHCPDARGS
+
+[Install]
+WantedBy=multi-user.target
