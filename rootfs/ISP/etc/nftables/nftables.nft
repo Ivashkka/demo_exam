@@ -18,6 +18,6 @@ table inet filter {
 table inet nat {
   chain postrouting {
   	type nat hook postrouting priority 0; policy accept;
-	oifname ~NAT-IF masquerade;
+    oifname ~NAT-IF masquerade;
   }
 }
