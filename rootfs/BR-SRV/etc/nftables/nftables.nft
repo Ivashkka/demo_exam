@@ -1,0 +1,16 @@
+#!/usr/sbin/nft -f
+# ipv4/ipv6 Simple & Safe Firewall
+# you can find examples in /usr/share/nftables/
+
+table inet filter {
+  chain input {
+    type filter hook input priority 0;
+  }
+  chain forward {
+    type filter hook forward priority 0;
+  }
+  chain output {
+    type filter hook output priority 0;
+  }
+
+}
