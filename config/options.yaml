@@ -8,15 +8,49 @@ deploy: # VirtualBox vms and network topology
     - BR-R:
       - BR-SRV
     - ~NAT # nat adapter to host machine
+
   packages:
-  - net-tools: ALL
-  - bind-utils: ALL
-  - nftables: ALL
-  - openssh-server: ALL
-  - NetworkManager: [HQ-SRV]
-  - NetworkManager-tui: [HQ-SRV]
-  - frr: [HQ-R, BR-R]
-  - strongswan: [HQ-R, BR-R]
-  - dhcp-server: [HQ-R]
-  - radvd: [HQ-R]
-  - iperf3: [HQ-R, ISP]
+  - name: net-tools
+    hosts: ALL
+    task: 0
+  - name: bind-utils
+    hosts: ALL
+    task: 0
+  - name: nftables
+    hosts: ALL
+    task: 0
+  - name: openssh-server
+    hosts: ALL
+    task: 0
+  - name: NetworkManager
+    hosts: [HQ-SRV]
+    task: 1.3
+  - name: NetworkManager-tui
+    hosts: [HQ-SRV]
+    task: 1.3
+  - name: frr
+    hosts: [HQ-R, BR-R]
+    task: 1.2
+  - name: strongswan
+    hosts: [HQ-R, BR-R]
+    task: 1.2
+  - name: dhcp-server
+    hosts: [HQ-R]
+    task: 1.3
+  - name: radvd
+    hosts: [HQ-R]
+    task: 1.3
+  - name: iperf3
+    hosts: [HQ-R, ISP]
+    task: 1.5
+
+  users:
+  - name: admin
+    password: P@ssw0rd
+    hosts: [CLI, HQ-SRV, HQ-R]
+  - name: branch-admin
+    password: P@ssw0rd
+    hosts: [BR-SRV, BR-R]
+  - name: network-admin
+    password: P@ssw0rd
+    hosts: [HQ-R, BR-SRV, BR-R]

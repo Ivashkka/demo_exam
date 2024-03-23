@@ -1,0 +1,150 @@
+filemap:
+  markers:
+    groups:
+    - name: IFS # interfaces
+      ru-desc: Настройка имен интерфейсов
+      en-desc: Interfaces names setup
+      members:
+      - name: ISP-IF
+        ru-desc: Интерфейс для соединения c ISP
+        en-desc: Interface for ISP connection
+        value: enp0s3
+      - name: HQ-SRV-IF
+        ru-desc: Интерфейс для соединения c HQ-SRV
+        en-desc: Interface for HQ-SRV connection
+        value: enp0s8
+      - name: TUN-IF
+        ru-desc: Интерфейс для gre соединения c BR-R
+        en-desc: Interface for gre BR-R connection
+        value: tun1
+
+    - name: IPS # addresses and masks
+      ru-desc: Настройка адресов интерфейсов
+      en-desc: Interfaces addresses setup
+      generic:
+        src-group: IFS
+        iterate:
+        - append: -IP4
+          ru-desc: Ipv4 адрес для интерфейса $GENERIC-MEMBER$value
+          en-desc: Ipv4 address for $GENERIC-MEMBER$value interface
+          values: [22.22.22.2, 192.168.1.1, 10.0.5.1]
+        - append: -MASK4
+          ru-desc: Ipv4 маска для интерфейса $GENERIC-MEMBER$value
+          en-desc: Ipv4 mask for $GENERIC-MEMBER$value interface
+          values: [24, 24, 30]
+        - append: -IP6
+          ru-desc: Ipv6 адрес для интерфейса $GENERIC-MEMBER$value
+          en-desc: Ipv6 address for $GENERIC-MEMBER$value interface
+          values: [2000:1::2, 2000:1::1:1, 2001::1]
+        - append: -MASK6
+          ru-desc: Ipv6 маска для интерфейса $GENERIC-MEMBER$value
+          en-desc: Ipv6 mask for $GENERIC-MEMBER$value interface
+          values: [112, 112, 124]
+
+    - name: RTR # router
+      ru-desc: Адреса роутера
+      en-desc: Router addresses
+      members:
+      - name: ISP-IP4
+        ru-desc: Ipv4 адрес ISP
+        en-desc: Ipv4 address of ISP
+        value: $ISP-IF-IP4$value|get_first_addr
+      - name: ISP-IP6
+        ru-desc: Ipv6 адрес ISP
+        en-desc: Ipv6 address of ISP
+        value: $ISP-IF-IP6$value|get_first_addr
+
+    - name: DNS # dns
+      ru-desc: Настройка имен интерфейсов
+      en-desc: Interfaces names setup
+      members:
+      - name: DNSSRV1
+        ru-desc: Ipv4 адрес первого DNS сервера
+        en-desc: Ipv4 address as first dns
+        value: 8.8.8.8
+      - name: DNSSRV2
+        ru-desc: Ipv4 адрес второго DNS сервера
+        en-desc: Ipv4 address as second dns
+        value: 8.8.4.4
+
+    - name: DHCP # dhcp settings
+      ru-desc: Настройка некоторых параметров DHCP
+      en-desc: Configuration of some of DHCP parameters
+      members:
+      - name: DHCP-RANGE-LEFT-IP4
+        ru-desc: Ipv4 адрес левой границы диапазона DHCP
+        en-desc: Ipv4 address left border of DHCP range
+        value: $HQ-SRV-IF-IP4$value|get_addr|100
+      - name: DHCP-RANGE-RIGHT-IP4
+        ru-desc: Ipv4 адрес правой границы диапазона DHCP
+        en-desc: Ipv4 address right border of DHCP range
+        value: $HQ-SRV-IF-IP4$value|get_addr|200
+      - name: DHCP-RANGE-LEFT-IP6
+        ru-desc: Ipv6 адрес левой границы диапазона DHCP
+        en-desc: Ipv6 address left border of DHCP range
+        value: $HQ-SRV-IF-IP6$value|get_addr|100
+      - name: DHCP-RANGE-RIGHT-IP6
+        ru-desc: Ipv6 адрес правой границы диапазона DHCP
+        en-desc: Ipv6 address right border of DHCP range
+        value: $HQ-SRV-IF-IP6$value|get_addr|200
+      - name: HQ-SRV-IP4
+        ru-desc: Ipv4 адрес HQ-SRV
+        en-desc: Ipv4 address of HQ-SRV
+        value: $HQ-SRV-IF-IP4$value|get_next_addr
+      - name: HQ-SRV-IP6
+        ru-desc: Ipv6 адрес HQ-SRV
+        en-desc: Ipv6 address of HQ-SRV
+        value: $HQ-SRV-IF-IP6$value|get_next_addr
+      - name: HQ-SRV-MAC
+        ru-desc: mac адрес HQ-SRV
+        en-desc: mac address of HQ-SRV
+        value:
+      - name: DHCP-DNSSRV1
+        ru-desc: ipv4 адрес первого DNS сервера
+        en-desc: ipv4 address of the first DNS server
+        value: 8.8.8.8
+      - name: DHCP-DNSSRV2
+        ru-desc: ipv4 адрес воторого DNS сервера
+        en-desc: ipv4 address of the second DNS server
+        value: 8.8.4.4
+
+    - name: NOASK # auto generated params
+      noask: true
+      generic:
+        src-group: IPS
+        iterate:
+        - replace: IP4 NET4
+          noask: true
+          value: $GENERIC-MEMBER$value|get_zero_addr
+        - replace: IP6 NET6
+          noask: true
+          value: $GENERIC-MEMBER$value|get_zero_addr
+        - replace: MASK4 FULLMASK4
+          noask: true
+          value: $GENERIC-MEMBER$value|get_fullmask4
+
+
+  tasklist:
+  - index: 1.2
+    add:
+      markers: [TUN-IF]
+      files:
+      - etc/net/ifaces/TUN-IF
+      - etc/strongswan
+      - etc/frr
+  - index: 1.3
+    add:
+      groups: [DHCP]
+      files:
+      - etc/dhcp
+  - index: 1.6
+    add:
+      files:
+      - root/etc_bckp.sh
+      - etc/systemd/system/etc_bckp.service
+      - etc/systemd/system/etc_bckp.timer
+      - etc/systemd/system/timers.target.wants/etc_bckp.timer
+  - index: 1.7
+    redefine:
+      files:
+      - etc/nftables/nftables.nft etc/nftables/nftables-pf.nft
