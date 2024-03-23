@@ -1,0 +1,6 @@
+[Unit]
+Description=backup /etc configs
+
+[Service]
+Type=oneshot
+ExecStart=/root/etc_bckp.sh
