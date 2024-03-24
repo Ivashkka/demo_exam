@@ -21,6 +21,7 @@ deploy: # VirtualBox vms and network topology
   - name: openssh-server
     hosts: ALL
     task: 0
+    units: [sshd.service]
   - name: NetworkManager
     hosts: [HQ-SRV]
     task: 1.3
