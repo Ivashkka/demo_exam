@@ -522,6 +522,7 @@ def main():
         except: pass
     install_packages(indetail)
     create_users(indetail)
+    print('')
     approve_groups(indetail)
     sort_markers()
     rewrite_tmp_files(indetail)
