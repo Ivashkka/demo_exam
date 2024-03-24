@@ -51,7 +51,7 @@ deploy: # VirtualBox vms and network topology
     hosts: [HQ-R, BR-R]
     task: 1.6
     install: None
-    units: [etc-bckp.timer]
+    units: [etc_bckp.timer]
 
   users:
   - name: admin
