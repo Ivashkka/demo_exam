@@ -106,7 +106,7 @@ def load_host_data():
     global deploy_options, filemap_options, localization, hostname
     try:
         hostname = platform.node().upper()
-        print(f"\n\nloading configs for {hostname}".upper())
+        print("\033[92m"+f"loading configs for {hostname}".upper()+"\033[0m")
         with open(os.path.join(config_dir, 'options.yaml'), 'r', encoding='utf-8') as f:
             deploy_options = yaml.safe_load(f)['deploy']
         with open(os.path.join(config_dir, f'{hostname.upper()}-filemap.yaml'), 'r', encoding='utf-8') as f:
@@ -268,7 +268,7 @@ def create_users(indetail : bool = False):
         if not indetail:
             resp = 'y'
             break
-        print_with_localization(f"create users for task {task}? (y/n)", f"создать пользователей для задания {task}? (y/n)", endl='')
+        print_with_localization(f"\ncreate users for task {task}? (y/n)", "\n"+f"создать пользователей для задания {task}? (y/n)", endl='')
         resp = input()
         if resp == 'n' or resp == 'y' or resp == '':
             break
@@ -299,7 +299,7 @@ def install_packages(indetail : bool = False):
         if not indetail:
             resp = 'y'
             break
-        print_with_localization(f"install packages for task {task}? (y/n)", f"установить пакеты для задания {task}? (y/n)", endl='')
+        print_with_localization(f"\ninstall packages for task {task}? (y/n)", "\n"+f"установить пакеты для задания {task}? (y/n)", endl='')
         resp = input()
         if resp == 'n' or resp == 'y' or resp == '':
             break
@@ -324,7 +324,7 @@ def enable_units(indetail : bool = False):
         if not indetail:
             resp = 'y'
             break
-        print_with_localization(f"enable all new services in systemd? (y/n)", f"включить запуск всех установленных сервисов в systemd? (y/n)", endl='')
+        print_with_localization(f"\nenable all new services in systemd? (y/n)", "\n"+f"включить запуск всех установленных сервисов в systemd? (y/n)", endl='')
         resp = input()
         if resp == 'n' or resp == 'y' or resp == '':
             break
@@ -520,8 +520,8 @@ def main():
             task = float(resp)
             break
         except: pass
-    create_users(indetail)
     install_packages(indetail)
+    create_users(indetail)
     approve_groups(indetail)
     sort_markers()
     rewrite_tmp_files(indetail)
