@@ -35,7 +35,7 @@ deploy: # VirtualBox vms and network topology
   - name: strongswan
     hosts: [HQ-R, BR-R]
     task: 1.2
-    units: [ipsec.conf]
+    units: [ipsec.service]
   - name: dhcp-server
     hosts: [HQ-R]
     task: 1.3
