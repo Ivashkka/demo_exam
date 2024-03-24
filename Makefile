@@ -14,7 +14,7 @@ install:
 	#check if hostname configured right
 	if [ ! -d $(CFGDIR) ]; then echo "Wrong hostname, change it using hostnamectl! exiting"; exit 1; fi
 	#install pip
-	apt-get install python$(PYTHON_VERSION)-pip
+	apt-get install python3-module-pip
 	pip3 install -r $(REQ_FILE)
 	mkdir $(TMPDIR)
 	rsync $(CFGDIR)/* $(TMPDIR)
