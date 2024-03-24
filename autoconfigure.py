@@ -514,7 +514,7 @@ def main():
         if indetail == '1' or indetail == '2': break
     indetail = False if indetail == '1' else True
     while True:
-        print_with_localization("enter task number (module.task for ex: 1.7)", "введите номер задания (модуль.задание например: 1.7)", endl=': ')
+        print_with_localization("enter task number (module.task for ex: x.x)", "введите номер задания (модуль.задание например: x.x)", endl=': ')
         resp = input()
         try:
             task = float(resp)
