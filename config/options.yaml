@@ -47,6 +47,11 @@ deploy: # VirtualBox vms and network topology
   - name: iperf3
     hosts: [HQ-R, ISP]
     task: 1.5
+  - name: etc-bckp
+    hosts: [HQ-R, BR-R]
+    task: 1.6
+    install: None
+    units: [etc-bckp.timer]
 
   users:
   - name: admin

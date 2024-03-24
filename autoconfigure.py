@@ -308,7 +308,8 @@ def install_packages(indetail : bool = False):
     for pckg in deploy_options['packages']:
         if pckg['task'] > task: continue
         if hostname in pckg['hosts'] or pckg['hosts'] == 'ALL':
-            pckgs.append(pckg['name'])
+            if 'install' not in list(pckg.keys()) or pckg['install'] == 'apt-get' or pckg['install'] == 'apt':
+                pckgs.append(pckg['name'])
     code = subprocess.call(("apt-get install "+' '.join(pckgs)).split())
     if code != 0:
         print("\033[93mwarn\033[0m: " + f"some commands reterned {code}")
@@ -332,7 +333,8 @@ def enable_units(indetail : bool = False):
     for pckg in deploy_options['packages']:
         if pckg['task'] > task: continue
         if hostname in pckg['hosts'] or pckg['hosts'] == 'ALL':
-            units.extend(pckg['units'])
+            if 'units' in list(pckg.keys()):
+                units.extend(pckg['units'])
     code = subprocess.call(("systemctl enable "+' '.join(units)).split())
     if code != 0:
         print("\033[93mwarn\033[0m: " + f"some commands reterned {code}")
@@ -531,6 +533,7 @@ def main():
         if resp == '' or resp == 'y' or resp == 'n': break
     if resp != 'n':
         apply_configuration()
+        enable_units(indetail)
         print_vbox_net_map()
         reboot_or_not(indetail)
 

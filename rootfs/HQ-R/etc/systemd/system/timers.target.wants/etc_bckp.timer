@@ -1,9 +1,0 @@
-[Unit]
-Description=Backup /etc configs every day
-
-[Timer]
-OnBootSec=1min
-OnUnitActiveSec=1d
-
-[Install]
-WantedBy=timers.target
