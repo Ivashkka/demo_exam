@@ -324,7 +324,7 @@ def enable_units(indetail : bool = False):
         if not indetail:
             resp = 'y'
             break
-        print_with_localization(f"\nenable all new services in systemd? (y/n)", "\n"+f"включить запуск всех установленных сервисов в systemd? (y/n)", endl='')
+        print_with_localization(f"\nenable all new services in systemd? (y/n)", "\n"+f"включить запуск всех установленных сервисов в systemd? (y/n)", endl='', color='\033[92m')
         resp = input()
         if resp == 'n' or resp == 'y' or resp == '':
             break
@@ -475,7 +475,7 @@ def check_if_host_valid():
 
 
 def print_vbox_net_map():
-    print_with_localization(f"\nVirtualBox vm network configuration for {hostname}".upper(), f"\nVirtualBox конфигурация сети виртуальной машины {hostname}".upper())
+    print_with_localization(f"\nVirtualBox vm network configuration for {hostname}".upper(), f"\nVirtualBox конфигурация сети виртуальной машины {hostname}".upper(), color='\033[94m')
     count = 1
     for connect in deploy_options['map'][hostname]:
         print_with_localization(f"adapter {count}", f"адаптер {count}", endl=': ', color='\033[92m')
