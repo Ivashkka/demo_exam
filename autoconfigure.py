@@ -460,7 +460,7 @@ def print_vbox_net_map():
 
 
 def apply_configuration():
-    subprocess.call(f"rsync -r --progress {hostname}~/* /".split())
+    subprocess.call(f"rsync -r --progress {hostname}~/ /".split())
     subprocess.call("systemctl daemon-reload".split())
 
 
