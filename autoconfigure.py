@@ -520,12 +520,17 @@ def main():
             task = float(resp)
             break
         except: pass
+    time.sleep(1)
     install_packages(indetail)
+    time.sleep(1)
     create_users(indetail)
+    time.sleep(1)
     print('')
     approve_groups(indetail)
+    time.sleep(1)
     sort_markers()
     rewrite_tmp_files(indetail)
+    time.sleep(1)
     resp = ''
     while True:
         if not indetail: break
@@ -534,8 +539,11 @@ def main():
         if resp == '' or resp == 'y' or resp == 'n': break
     if resp != 'n':
         apply_configuration()
+        time.sleep(1)
         enable_units(indetail)
+        time.sleep(1)
         print_vbox_net_map()
+        time.sleep(1)
         reboot_or_not(indetail)
 
 
