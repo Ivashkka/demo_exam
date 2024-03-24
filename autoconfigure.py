@@ -495,7 +495,7 @@ def reboot_or_not(indetail : bool = False):
     while True:
         if not indetail: break
         print_with_localization("\nreboot? (y/n)", '\n'+"перезагрузиться? (y/n)", endl=' ')
-        print_with_localization("recommended - yes", "рекомендуется - yes", endl=': ', color='\033[91m')
+        print_with_localization("recommended - y", "рекомендуется - y", endl=': ', color='\033[91m')
         resp = input()
         if resp == '' or resp == 'y' or resp == 'n': break
     if resp != 'n':
