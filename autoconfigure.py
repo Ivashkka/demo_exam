@@ -191,17 +191,16 @@ def generic_markers_list(generic : dict):
                     break
         if excluded: continue
         for i in generic['iterate']:
-            match (list(i.keys())[0]):
-                case 'append':
-                    #new_marker = copy.deepcopy(member)
-                    new_marker = {'name':member['name']}
-                    new_marker['name'] += i['append']
-                case 'replace':
-                    pair = i['replace'].split(' ')
-                    if pair[0] not in member['name']: continue
-                    #new_marker = copy.deepcopy(member)
-                    new_marker = {'name':member['name']}
-                    new_marker['name'] = new_marker['name'].replace(pair[0], pair[1])
+            if list(i.keys())[0] == 'append':
+                #new_marker = copy.deepcopy(member)
+                new_marker = {'name':member['name']}
+                new_marker['name'] += i['append']
+            elif list(i.keys())[0] == 'replace':
+                pair = i['replace'].split(' ')
+                if pair[0] not in member['name']: continue
+                #new_marker = copy.deepcopy(member)
+                new_marker = {'name':member['name']}
+                new_marker['name'] = new_marker['name'].replace(pair[0], pair[1])
             if 'values' in list(i.keys()):
                 new_marker['value'] = i['values'][count]
             elif 'value' in list(i.keys()):
