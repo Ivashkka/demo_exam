@@ -268,7 +268,7 @@ def create_users(indetail : bool = False):
         if not indetail:
             resp = 'y'
             break
-        print_with_localization(f"create users for task {task}? (y/n)", f"создать пользователей для задания {task}?", endl='')
+        print_with_localization(f"create users for task {task}? (y/n)", f"создать пользователей для задания {task}? (y/n)", endl='')
         resp = input()
         if resp == 'n' or resp == 'y' or resp == '':
             break
@@ -288,7 +288,7 @@ def create_users(indetail : bool = False):
             #print(f"echo {user['name']}:{new_pass} | chpasswd".split())
     if maxcode != 0:
         print("\033[93mwarn\033[0m: " + f"some commands reterned {maxcode}")
-    print_with_localization("done", "готово")
+    if indetail: print_with_localization("done", "готово")
 
 
 def install_packages(indetail : bool = False):
@@ -299,7 +299,7 @@ def install_packages(indetail : bool = False):
         if not indetail:
             resp = 'y'
             break
-        print_with_localization(f"install packages for task {task}? (y/n)", f"установить пакеты для задания {task}?", endl='')
+        print_with_localization(f"install packages for task {task}? (y/n)", f"установить пакеты для задания {task}? (y/n)", endl='')
         resp = input()
         if resp == 'n' or resp == 'y' or resp == '':
             break
@@ -312,7 +312,31 @@ def install_packages(indetail : bool = False):
     code = subprocess.call(("apt-get install "+' '.join(pckgs)).split())
     if code != 0:
         print("\033[93mwarn\033[0m: " + f"some commands reterned {code}")
-    print_with_localization("done", "готово")
+    if indetail: print_with_localization("done", "готово")
+
+
+def enable_units(indetail : bool = False):
+    for pckg in deploy_options['packages']:
+        if pckg['task'] <= task: break
+    else: return
+    while True:
+        if not indetail:
+            resp = 'y'
+            break
+        print_with_localization(f"enable all new services in systemd? (y/n)", f"включить запуск всех установленных сервисов в systemd? (y/n)", endl='')
+        resp = input()
+        if resp == 'n' or resp == 'y' or resp == '':
+            break
+    if resp == 'n': return
+    units = []
+    for pckg in deploy_options['packages']:
+        if pckg['task'] > task: continue
+        if hostname in pckg['hosts'] or pckg['hosts'] == 'ALL':
+            units.extend(pckg['units'])
+    code = subprocess.call(("systemctl enable "+' '.join(units)).split())
+    if code != 0:
+        print("\033[93mwarn\033[0m: " + f"some commands reterned {code}")
+    if indetail: print_with_localization("done", "готово")
 
 
 def approve_groups(indetail : bool = False):
