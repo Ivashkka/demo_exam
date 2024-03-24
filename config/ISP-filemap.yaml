@@ -46,35 +46,6 @@ filemap:
           en-desc: Ipv6 mask for $GENERIC-MEMBER$value interface
           values: [124, 124, 124]
 
-  # - name: IPS # addresses
-  #     ru-desc: Настройка адресов интерфейсов
-  #     en-desc: Interfaces addresses setup
-  #     members:
-  #     - name: CLI-IF-IP4
-  #       ru-desc: Ipv4 адрес для интерфейса $CLI-IF
-  #       en-desc: Ipv4 address for $CLI-IF interface
-  #       value: 11.11.11.1/24
-  #     - name: CLI-IF-IP6
-  #       ru-desc: Ipv6 адрес для интерфейса $CLI-IF
-  #       en-desc: Ipv6 address for $CLI-IF interface
-  #       value: 2000:1111::1/124
-  #     - name: HQ-R-IF-IP4
-  #       ru-desc: Ipv4 адрес для интерфейса $HQ-R-IF
-  #       en-desc: Ipv4 address for $HQ-R-IF interface
-  #       value: 22.22.22.1/24
-  #     - name: HQ-R-IF-IP6
-  #       ru-desc: Ipv6 адрес для интерфейса $HQ-R-IF
-  #       en-desc: Ipv6 address for $HQ-R-IF interface
-  #       value: 2000:1::1/124
-  #     - name: BR-R-IF-IP4
-  #       ru-desc: Ipv4 адрес для интерфейса $BR-R-IF
-  #       en-desc: Ipv4 address for $BR-R-IF interface
-  #       value: 33.33.33.1/24
-  #     - name: BR-R-IF-IP6
-  #       ru-desc: Ipv6 адрес для интерфейса $BR-R-IF
-  #       en-desc: Ipv6 address for $BR-R-IF interface
-  #       value: 2000:2::1/124
-
     - name: DNS # dns
       ru-desc: Настройка серверов DNS
       en-desc: DNS servers setup
