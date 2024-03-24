@@ -276,14 +276,14 @@ def create_users(indetail : bool = False):
     for user in deploy_options['users']:
         if user['task'] > task: continue
         if hostname in user['hosts'] or user['hosts'] == 'ALL':
-            code = subprocess.call(f"sudo useradd {user['name']} -m -U".split())
+            code = subprocess.call(f"useradd {user['name']} -m -U".split())
             if code > maxcode: maxcode = code
             #print(f"sudo useradd {user['name']} -m -U".split())
             if localization == 'en':
                 new_pass = ask_for_new(f"password for {user['name']} (default is {user['password']}): ", user['password'])
             elif localization == 'ru':
                 new_pass = ask_for_new(f"пароль для пользователя {user['name']} (default is {user['password']}): ", user['password'])
-            code = subprocess.call(f"echo {user['name']}:{new_pass} | chpasswd".split())
+            code = subprocess.call(f"echo {user['name']}:{new_pass} | chpasswd", shell=True)
             if code > maxcode: maxcode = code
             #print(f"echo {user['name']}:{new_pass} | chpasswd".split())
     if maxcode != 0:
