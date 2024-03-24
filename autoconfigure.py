@@ -106,7 +106,7 @@ def load_host_data():
     global deploy_options, filemap_options, localization, hostname
     try:
         hostname = platform.node().upper()
-        print("\033[92m"+f"loading configs for {hostname}".upper()+"\033[0m")
+        print("\033[92m"+f"\n\nloading configs for {hostname}".upper()+"\033[0m")
         with open(os.path.join(config_dir, 'options.yaml'), 'r', encoding='utf-8') as f:
             deploy_options = yaml.safe_load(f)['deploy']
         with open(os.path.join(config_dir, f'{hostname.upper()}-filemap.yaml'), 'r', encoding='utf-8') as f:
