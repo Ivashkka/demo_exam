@@ -449,7 +449,7 @@ def check_if_host_valid():
 
 
 def print_vbox_net_map():
-    print_with_localization("\nVirtualBox vm network configuration".upper(), "\nVirtualBox конфигурация сети виртуальной машины".upper())
+    print_with_localization(f"\nVirtualBox vm network configuration for {hostname}".upper(), f"\nVirtualBox конфигурация сети виртуальной машины {hostname}".upper())
     count = 1
     for connect in deploy_options['map'][hostname]:
         print_with_localization(f"adapter {count}", f"адаптер {count}", endl=': ', color='\033[92m')
