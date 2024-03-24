@@ -163,8 +163,7 @@ def get_new_marker_or_keep_old(marker : dict, rjust_size : int):
     #         if approve == 'y' or approve == 'n' or approve == '': break
     #     if approve != 'n': break
     
-    data = ask_for_new(f'\033[91m{marker['name'].rjust(rjust_size)}$\033[0m  {marker[f'{localization}-desc']} (default - {marker['value']}): ',
-                       marker['value'], rjust_size+3)
+    data = ask_for_new(f'\033[91m{marker['name'].rjust(rjust_size)}$\033[0m  {marker[f'{localization}-desc']} (default - {marker['value']}): ', marker['value'], rjust_size+3)
     new_marker = copy.deepcopy(marker)
     new_marker['value'] = data
     return new_marker
