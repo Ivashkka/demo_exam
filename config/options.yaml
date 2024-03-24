@@ -1,13 +1,11 @@
 deploy: # VirtualBox vms and network topology
-  hosts: [ISP, CLI, HQ-R, BR-R, HQ-SRV, BR-SRV]
   map:
-  - ISP:
-    - CLI
-    - HQ-R:
-      - HQ-SRV
-    - BR-R:
-      - BR-SRV
-    - ~NAT # nat adapter to host machine
+    ISP: [CLI, HQ-R, BR-R, ~NAT]
+    CLI: [ISP]
+    HQ-R: [ISP, HQ-SRV]
+    BR-R: [ISP, BR-SRV]
+    HQ-SRV: [HQ-R]
+    BR-SRV: [BR-R]
 
   packages:
   - name: net-tools
@@ -48,9 +46,12 @@ deploy: # VirtualBox vms and network topology
   - name: admin
     password: P@ssw0rd
     hosts: [CLI, HQ-SRV, HQ-R]
+    task: 1.4
   - name: branch-admin
     password: P@ssw0rd
     hosts: [BR-SRV, BR-R]
+    task: 1.4
   - name: network-admin
     password: P@ssw0rd
     hosts: [HQ-R, BR-SRV, BR-R]
+    task: 1.4
