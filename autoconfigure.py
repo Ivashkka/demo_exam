@@ -250,13 +250,12 @@ def fill_variables(marker : dict, generic_member_name : str = ''):
                     if member['name'] == variable[0]:
                         variable[1] = member[variable[1]]
                         break
-            match len(action):
-                case 0:
-                    variable = variable[1]
-                case 1:
-                    variable = globals()[action[0]+'_action'](*variable)
-                case _:
-                    variable = globals()[action[0]+'_action'](*variable, *action[1:])
+            if len(action) == 0:
+                variable = variable[1]
+            elif len(action) == 1:
+                variable = globals()[action[0]+'_action'](*variable)
+            else:
+                variable = globals()[action[0]+'_action'](*variable, *action[1:])
             marker[key] = marker[key].replace(word, variable)
 
 
@@ -280,11 +279,10 @@ def create_users(indetail : bool = False):
             code = subprocess.call(f"sudo useradd {user['name']} -m -U".split())
             if code > maxcode: maxcode = code
             #print(f"sudo useradd {user['name']} -m -U".split())
-            match localization:
-                case 'en':
-                    new_pass = ask_for_new(f"password for {user['name']} (default is {user['password']}): ", user['password'])
-                case 'ru':
-                    new_pass = ask_for_new(f"пароль для пользователя {user['name']} (default is {user['password']}): ", user['password'])
+            if localization == 'en':
+                new_pass = ask_for_new(f"password for {user['name']} (default is {user['password']}): ", user['password'])
+            elif localization == 'ru':
+                new_pass = ask_for_new(f"пароль для пользователя {user['name']} (default is {user['password']}): ", user['password'])
             code = subprocess.call(f"echo {user['name']}:{new_pass} | chpasswd".split())
             if code > maxcode: maxcode = code
             #print(f"echo {user['name']}:{new_pass} | chpasswd".split())
