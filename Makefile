@@ -3,8 +3,8 @@
 
 hostname:=$(shell hostname)
 CFGDIR:=$(shell pwd)/rootfs/$(hostname)
-TMPDIR:=$(hostname)~
-REQ_FILE := requirements.txt
+TMPDIR:=$(shell pwd)/$(hostname)~
+REQ_FILE := $(shell pwd)/requirements.txt
 
 PYTHON_VERSION := $(shell python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
 
@@ -17,6 +17,7 @@ install:
 	apt-get install python3-module-pip
 	pip3 install -r $(REQ_FILE)
 	mkdir $(TMPDIR)
-	rsync $(CFGDIR)/* $(TMPDIR)
+	rsync -r $(CFGDIR)/* $(TMPDIR)
+	python3 autoconfigure.py
 clean:
 	echo No auto config purge functional. Do it by yourself
