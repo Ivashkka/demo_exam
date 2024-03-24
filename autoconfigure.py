@@ -191,7 +191,7 @@ def generic_markers_list(generic : dict):
                     break
         if excluded: continue
         for i in generic['iterate']:
-            match list(i.keys())[0]:
+            match (list(i.keys())[0]):
                 case 'append':
                     #new_marker = copy.deepcopy(member)
                     new_marker = {'name':member['name']}
