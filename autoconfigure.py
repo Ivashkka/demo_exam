@@ -163,7 +163,7 @@ def get_new_marker_or_keep_old(marker : dict, rjust_size : int):
     #         if approve == 'y' or approve == 'n' or approve == '': break
     #     if approve != 'n': break
     
-    data = ask_for_new(f'\033[91m{marker['name'].rjust(rjust_size)}$\033[0m  {marker[f'{localization}-desc']} (default - {marker['value']}): ', marker['value'], rjust_size+3)
+    data = ask_for_new(f"\033[91m{marker['name'].rjust(rjust_size)}$\033[0m  {marker[f'{localization}-desc']} (default - {marker['value']}): ", marker['value'], rjust_size+3)
     new_marker = copy.deepcopy(marker)
     new_marker['value'] = data
     return new_marker
@@ -326,7 +326,7 @@ def approve_groups(indetail : bool = False):
         new_group['members'] = []
         if not check_if_group_in_task(group): continue
         if 'noask' not in list(group.keys()) or group['noask'] == False:
-            if indetail: print(f'\033[93m{group[f'{localization}-desc'].upper()}\033[0m')
+            if indetail: print(f"\033[93m{group[f'{localization}-desc'].upper()}\033[0m")
         if 'members' in list(group.keys()):
             for member in group['members']:
                 if not check_if_marker_in_task(member): continue
