@@ -16,6 +16,7 @@ install:
 	#install pip
 	apt-get install python3-module-pip
 	pip3 install -r $(REQ_FILE)
+	rm $(TMPDIR)
 	mkdir $(TMPDIR)
 	rsync -r $(CFGDIR)/* $(TMPDIR)
 	python3 autoconfigure.py
