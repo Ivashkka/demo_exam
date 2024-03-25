@@ -137,6 +137,7 @@ filemap:
       groups: [DHCP]
       files:
       - etc/dhcp
+      - etc/sysconfig
   - index: 1.6
     add:
       files:
