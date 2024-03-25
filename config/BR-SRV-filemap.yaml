@@ -1,0 +1,49 @@
+filemap:
+  markers:
+    groups:
+    - name: IFS # interfaces
+      ru-desc: Настройка имен интерфейсов
+      en-desc: Interfaces names setup
+      members:
+      - name: BR-R-IF
+        ru-desc: Интерфейс для соединения с BR
+        en-desc: Interface for BR connection
+        value: enp0s3
+
+    - name: IPS # addresses and masks
+      ru-desc: Настройка адресов интерфейсов
+      en-desc: Interfaces addresses setup
+      generic:
+        src-group: IFS
+        exclude: [~NAT-IF]
+        iterate:
+        - append: -IP4
+          ru-desc: Ipv4 адрес для интерфейса $GENERIC-MEMBER$value
+          en-desc: Ipv4 address for $GENERIC-MEMBER$value interface
+          values: [192.168.2.2]
+        - append: -MASK4
+          ru-desc: Ipv4 маска для интерфейса $GENERIC-MEMBER$value
+          en-desc: Ipv4 mask for $GENERIC-MEMBER$value interface
+          values: [24]
+        - append: -IP6
+          ru-desc: Ipv6 адрес для интерфейса $GENERIC-MEMBER$value
+          en-desc: Ipv6 address for $GENERIC-MEMBER$value interface
+          values: [2000:2::1:2]
+        - append: -MASK6
+          ru-desc: Ipv6 маска для интерфейса $GENERIC-MEMBER$value
+          en-desc: Ipv6 mask for $GENERIC-MEMBER$value interface
+          values: [112]
+
+    - name: DNS # dns
+      ru-desc: Настройка серверов DNS
+      en-desc: DNS servers setup
+      members:
+      - name: DNSSRV1
+        ru-desc: Ipv4 адрес первого DNS сервера
+        en-desc: Ipv4 address as first dns
+        value: 8.8.8.8
+      - name: DNSSRV2
+        ru-desc: Ipv4 адрес второго DNS сервера
+        en-desc: Ipv4 address as second dns
+        value: 8.8.4.4
+

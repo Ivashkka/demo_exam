@@ -87,6 +87,10 @@ def check_if_marker_in_task(marker : dict):
         if 'add' in list(t.keys()) and 'markers' in list(t['add'].keys()):
             if marker['name'] in t['add']['markers']:
                 if t['index'] > task: return False
+    for t in filemap_options['tasklist']:
+        if 'remove' in list(t.keys()) and 'markers' in list(t['remove'].keys()):
+            if marker['name'] in t['remove']['markers']:
+                if t['index'] <= task: return False
         # if 'redefine' in list(t.keys()) and 'markers' in list(t['redefine'].keys()):
         #     for pair in t['redefine']['markers']:
         #         if marker['name'] == pair.split(' ')[0]:
@@ -99,6 +103,9 @@ def check_if_group_in_task(group : dict):
         if 'add' in list(t.keys()) and 'groups' in list(t['add'].keys()):
             if group['name'] in t['add']['groups']:
                 if t['index'] > task: return False
+        if 'remove' in list(t.keys()) and 'groups' in list(t['remove'].keys()):
+            if group['name'] in t['remove']['groups']:
+                if t['index'] <= task: return False
     return True
 
 
