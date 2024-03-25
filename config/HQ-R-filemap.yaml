@@ -41,6 +41,15 @@ filemap:
           en-desc: Ipv6 mask for $GENERIC-MEMBER$value interface
           values: [112, 112, 124]
 
+    - name: TUNOPT
+      ru-desc: Настройка некоторых параметров GRE
+      en-desc: Several GRE options
+      members:
+      - name: BR-R-IP4
+        ru-desc: Ipv4 адрес BR-R внешний
+        en-desc: Ipv4 address of BR-R external
+        value: $TUN-IF-IP4$value|get_next_addr
+
     - name: RTR # router
       ru-desc: Адреса роутера
       en-desc: Router addresses
