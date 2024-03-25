@@ -23,14 +23,14 @@ def find_mask_by_ip_marker_name(ip_marker_name : str):
     elif 'IP6' in ip_marker_name:
         ip_mask_name = ip_marker_name.replace('IP6', 'MASK6')
     else:
-        print('\033[91merror\033[0m tell Ivan Rakov about it')
+        print('\033[91merror\033[0m tell \033[94mHeisenberg\033[0m about it')
         raise Exception(f'wrong marker name {ip_marker_name}')
     for group in approved_groups:
         for member in group['members']:
             if member['name'] == ip_mask_name:
                 return int(member['value'])
     else:
-        print('\033[91merror\033[0m tell Ivan Rakov about it')
+        print('\033[91merror\033[0m tell \033[94mHeisenberg\033[0m about it')
         raise Exception(f"failed to find mask for {ip_marker_name}")
 
 
@@ -40,14 +40,14 @@ def find_ip_by_mask_marker_name(mask_marker_name : str):
     elif 'MASK6' in mask_marker_name:
         mask_marker_name = mask_marker_name.replace('MASK6', 'IP6')
     else:
-        print('\033[91merror\033[0m tell Ivan Rakov about it')
+        print('\033[91merror\033[0m tell \033[94mHeisenberg\033[0m about it')
         raise Exception(f'wrong marker name {mask_marker_name}')
     for group in approved_groups:
         for member in group['members']:
             if member['name'] == mask_marker_name:
                 return member['value']
     else:
-        print('\033[91merror\033[0m tell Ivan Rakov about it')
+        print('\033[91merror\033[0m tell \033[94mHeisenberg\033[0m about it')
         raise Exception(f"failed to find ip for {mask_marker_name}")
 
 
@@ -76,7 +76,7 @@ def get_next_addr_action(marker_name : str, src_ip : str):
 def get_fullmask4_action(marker_name : str, mask):
     ip = find_ip_by_mask_marker_name(marker_name)
     if ':' in ip:
-        print('\033[91merror\033[0m tell Ivan Rakov about it')
+        print('\033[91merror\033[0m tell \033[94mHeisenberg\033[0m about it')
         raise Exception("ipv6 address in get_fullmask4_action")
     net = ipaddress.IPv4Network(str(ip)+'/'+str(mask), strict=False)
     return str(net.netmask)
@@ -240,11 +240,11 @@ def fill_variables(marker : dict, generic_member_name : str = ''):
         if '$' in str(marker[key]):
             variable, action, word = split_command(marker[key])
             if len(variable) != 2:
-                print('\033[91merror\033[0m tell Ivan Rakov about it')
+                print('\033[91merror\033[0m tell \033[94mHeisenberg\033[0m about it')
                 raise Exception(f"can't find variable {variable}")
             if variable[0] == 'GENERIC-MEMBER':
                 if generic_member_name == '':
-                    print('\033[91merror\033[0m tell Ivan Rakov about it')
+                    print('\033[91merror\033[0m tell \033[94mHeisenberg\033[0m about it')
                     raise Exception("GENERIC-MEMBER is empty!")
                 variable[0] = generic_member_name
             for group in approved_groups:
@@ -364,7 +364,7 @@ def approve_groups(indetail : bool = False):
         if 'generic' in list(group.keys()):
             new_group.pop('generic')
             if not check_if_generic_target_exists(group):
-                print('\033[91merror\033[0m tell Ivan Rakov about it')
+                print('\033[91merror\033[0m tell \033[94mHeisenberg\033[0m about it')
                 raise Exception("may be wrong sequence of groups in filemap! no generic target")
             new_markers = generic_markers_list(group['generic'])
             for member in new_markers:
@@ -442,7 +442,7 @@ def reword_files(dpath : str, indetail : bool = False):
 def rewrite_tmp_files(indetail : bool = False):
     tmp_dir = hostname + '~'
     if not os.path.exists(tmp_dir):
-        print('\033[91merror\033[0m tell Ivan Rakov about it')
+        print('\033[91merror\033[0m tell \033[94mHeisenberg\033[0m about it')
         raise Exception(f"no tmp dir {hostname}~ !")
     print_with_localization("\nconfiguring tmp files".upper(), "\n"+"настройка временных конфигурационных файлов".upper(), color='\033[94m')
     if 'tasklist' in list(filemap_options.keys()):
@@ -471,7 +471,7 @@ def sort_markers():
 
 def check_if_host_valid():
     if hostname not in deploy_options['map']:
-        print('\033[91merror\033[0m tell Ivan Rakov about it')
+        print('\033[91merror\033[0m tell \033[94mHeisenberg\033[0m about it')
         raise Exception("host not in deploy hosts")
 
 
@@ -507,7 +507,7 @@ def reboot_or_not(indetail : bool = False):
 def main():
     global task
     if load_host_data() != True:
-        print('\033[91merror\033[0m tell Ivan Rakov about it')
+        print('\033[91merror\033[0m tell \033[94mHeisenberg\033[0m about it')
         raise Exception("failed to read configuration files")
     check_if_host_valid()
     while True:
