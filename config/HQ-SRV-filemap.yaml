@@ -66,4 +66,4 @@ filemap:
       marks: [IPS, RTR]
     redefine:
       files:
-      - etc/NetworkManager/system-connections/HQ-SRV-IF.nmconnection etc/NetworkManager/system-connections/HQ-SRV-IF-dhcp.nmconnection
+      - etc/NetworkManager/system-connections/HQ-R-IF.nmconnection etc/NetworkManager/system-connections/HQ-R-IF-dhcp.nmconnection
