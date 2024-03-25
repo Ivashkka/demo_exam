@@ -504,6 +504,10 @@ def reboot_or_not(indetail : bool = False):
         subprocess.call('reboot'.split())
 
 
+def postconf_bash():
+    subprocess.call(f"bash config/{hostname}-postconf.sh", shell=True)
+
+
 def main():
     global task
     if load_host_data() != True:
@@ -541,6 +545,7 @@ def main():
         if resp == 'y' or resp == 'n': break
     if resp == 'y':
         apply_configuration()
+        postconf_bash()
         time.sleep(1)
         enable_units(True)
         time.sleep(1)
