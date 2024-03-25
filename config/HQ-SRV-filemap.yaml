@@ -60,6 +60,18 @@ filemap:
         en-desc: Ipv4 address as second dns
         value: 8.8.4.4
 
+    - name: NOASK # auto generated params
+      noask: true
+      generic:
+        src-group: IPS
+        iterate:
+        - replace: IP4 NET4
+          noask: true
+          value: $GENERIC-MEMBER$value|get_zero_addr
+        - replace: IP6 NET6
+          noask: true
+          value: $GENERIC-MEMBER$value|get_zero_addr
+
   tasklist:
   - index: 1.3
     redefine:
