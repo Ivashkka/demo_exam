@@ -319,6 +319,7 @@ def install_packages(indetail : bool = False):
         if hostname in pckg['hosts'] or pckg['hosts'] == 'ALL':
             if 'install' not in list(pckg.keys()) or pckg['install'] == 'apt-get' or pckg['install'] == 'apt':
                 pckgs.append(pckg['name'])
+    subprocess.call("apt-get update".split())
     code = subprocess.call(("apt-get install "+' '.join(pckgs)).split())
     if code != 0:
         print("\033[93mwarn\033[0m: " + f"some commands reterned {code}")
