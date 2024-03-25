@@ -128,7 +128,9 @@ filemap:
         - replace: IP6 NET6
           noask: true
           value: $GENERIC-MEMBER$value|get_zero_addr
-
+        - replace: MASK4 FULLMASK4
+          noask: true
+          value: $GENERIC-MEMBER$value|get_fullmask4
 
   tasklist:
   - index: 1.2
