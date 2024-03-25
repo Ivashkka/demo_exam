@@ -6,11 +6,42 @@
 <h3 align="center">================== ALT-LINUX VERSION ==================</h3>
 <br>
 <p><b>AUTO CONFIGURE HOST:</b></p>
+<p>login as root</p>
+<p><code>su -</code></p>
+<p>locate inside home dirrectory</p>
+<p><code>cd ~</code></p>
+<p>install git and make</p>
+<p><code>apt install git make</code></p>
 <p>clone repo to linux machine:</p>
-<p><code>apt install git make; git clone https://github.com/Ivashkka/demo_exam.git; cd demo_exam</code></p>
+<p><code>git clone https://github.com/Ivashkka/demo_exam.git</code></p>
+<p>move inside:</p>
+<p><code>cd demo_exam</code></p>
+<p>checkout to altlinux:</p>
+<p><code>git checkout altlinux</code></p>
+<p>change hostname:</p>
+<p><code>hostnamectl set-hostname NAME</code></p>
 <p>start autoconfigure script:</p>
 <p><code>make install</code></p>
-<p>host will be rebooted</p>
+<p>follow the instructions</p>
+<br>
+<p><b>АВТОНАСТРОЙКА ХОСТА:</b></p>
+<p>зайдите под рутом</p>
+<p><code>su -</code></p>
+<p>перейдите в домашнюю дирректорию</p>
+<p><code>cd ~</code></p>
+<p>установите git и make:</p>
+<p><code>apt install git make</code></p>
+<p>склонируйте репозиторий:</p>
+<p><code>git clone https://github.com/Ivashkka/demo_exam.git</code></p>
+<p>перейдите внутрь репозитория:</p>
+<p><code>cd demo_exam</code></p>
+<p>переключитесь на ветку altlinux:</p>
+<p><code>git checkout altlinux</code></p>
+<p>измените имя хоста:</p>
+<p><code>hostnamectl set-hostname NAME</code></p>
+<p>запустите установочный скрипт:</p>
+<p><code>make install</code></p>
+<p>следуйте инструкциям</p>
 <br>
 <p><b>all apt package requirements:</b></p>
 <pre>net-tools
@@ -59,17 +90,17 @@ source_cfg/
 <br>
 
 **Finished modules:**
-- [ ] Module 1:
-  - [ ] 1.1 VirtualBox adapters + vms interface configurations
-  - [ ] 1.2 IPSec / GRE ipv4 tunnel + OSPFV2 / OSPFV3
-  - [ ] 1.3 Internal DHCP + DHCP6 on HQ-R
-  - [ ] 1.4 Local Users
-  - [ ] 1.5 iperf3 results
-  - [ ] 1.6 /etc backup scripts
-  - [ ] 1.7 SSH setup
-  - [ ] 1.8 nftables inet filter
+- [x] Module 1:
+  - [x] 1.1 VirtualBox adapters + vms interface configurations
+  - [x] 1.2 IPSec / GRE ipv4 tunnel + OSPFV2 / OSPFV3
+  - [x] 1.3 Internal DHCP + DHCP6 on HQ-R
+  - [x] 1.4 Local Users
+  - [x] 1.5 iperf3 results
+  - [x] 1.6 /etc backup scripts
+  - [x] 1.7 SSH setup
+  - [x] 1.8 nftables inet filter
 - [ ] Module 2:
-  - [ ] 2.0 nftables NAT
+  - [x] 2.0 nftables NAT
   - [ ] 2.1 bind9 setup
   - [ ] 2.2 NTP setup
   - [ ] 2.3 Samba domain
