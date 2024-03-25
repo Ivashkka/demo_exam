@@ -5,25 +5,6 @@
 <br>
 <h3 align="center">================== ALT-LINUX VERSION ==================</h3>
 <br>
-<p><b>AUTO CONFIGURE HOST:</b></p>
-<p>login as root</p>
-<p><code>su -</code></p>
-<p>locate inside home dirrectory</p>
-<p><code>cd ~</code></p>
-<p>install git and make</p>
-<p><code>apt install git make</code></p>
-<p>clone repo to linux machine:</p>
-<p><code>git clone https://github.com/Ivashkka/demo_exam.git</code></p>
-<p>move inside:</p>
-<p><code>cd demo_exam</code></p>
-<p>checkout to altlinux:</p>
-<p><code>git checkout altlinux</code></p>
-<p>change hostname:</p>
-<p><code>hostnamectl set-hostname NAME</code></p>
-<p>start autoconfigure script:</p>
-<p><code>make install</code></p>
-<p>follow the instructions</p>
-<br>
 <p><b>АВТОНАСТРОЙКА ХОСТА:</b></p>
 <p>зайдите под рутом</p>
 <p><code>su -</code></p>
@@ -42,6 +23,25 @@
 <p>запустите установочный скрипт:</p>
 <p><code>make install</code></p>
 <p>следуйте инструкциям</p>
+<br>
+<p><b>AUTO CONFIGURE HOST:</b></p>
+<p>login as root</p>
+<p><code>su -</code></p>
+<p>locate inside home dirrectory</p>
+<p><code>cd ~</code></p>
+<p>install git and make</p>
+<p><code>apt install git make</code></p>
+<p>clone repo to linux machine:</p>
+<p><code>git clone https://github.com/Ivashkka/demo_exam.git</code></p>
+<p>move inside:</p>
+<p><code>cd demo_exam</code></p>
+<p>checkout to altlinux:</p>
+<p><code>git checkout altlinux</code></p>
+<p>change hostname:</p>
+<p><code>hostnamectl set-hostname NAME</code></p>
+<p>start autoconfigure script:</p>
+<p><code>make install</code></p>
+<p>follow the instructions</p>
 <br>
 <p><b>all apt package requirements:</b></p>
 <pre>net-tools
