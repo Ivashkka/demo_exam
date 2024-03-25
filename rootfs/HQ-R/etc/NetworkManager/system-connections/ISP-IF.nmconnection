@@ -7,13 +7,13 @@ interface-name=ISP-IF
 [ethernet]
 
 [ipv4]
-address1=ISP-IF-IP4/ISP-IF-MASK4,ISP_IP4
+address1=ISP-IF-IP4/ISP-IF-MASK4,ISP-IP4
 dns=DNSSRV1;DNSSRV2;
 method=manual
 
 [ipv6]
 addr-gen-mode=default
-address1=ISP-IF-IP6/ISP-IF-MASK6,ISP_IP6
+address1=ISP-IF-IP6/ISP-IF-MASK6,ISP-IP6
 method=manual
 
 [proxy]
