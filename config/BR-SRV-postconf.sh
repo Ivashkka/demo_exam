@@ -1,3 +1,3 @@
 #!/bin/bash
 
-rm -rf /etc/NetworkManager/Пр*
+rm -rf /etc/NetworkManager/system-connections/Пр*
