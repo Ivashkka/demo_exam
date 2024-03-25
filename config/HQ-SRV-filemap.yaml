@@ -62,8 +62,6 @@ filemap:
 
   tasklist:
   - index: 1.3
-    remove:
-      groups: [IPS]
     redefine:
       files:
       - etc/NetworkManager/system-connections/HQ-SRV-IF.nmconnection etc/NetworkManager/system-connections/HQ-SRV-IF-dhcp.nmconnection
