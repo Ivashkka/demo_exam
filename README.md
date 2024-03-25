@@ -11,7 +11,7 @@
 <p>перейдите в домашнюю дирректорию</p>
 <p><code>cd ~</code></p>
 <p>установите git и make:</p>
-<p><code>apt install git make</code></p>
+<p><code>apt-get install git make</code></p>
 <p>склонируйте репозиторий:</p>
 <p><code>git clone https://github.com/Ivashkka/demo_exam.git</code></p>
 <p>перейдите внутрь репозитория:</p>
@@ -30,7 +30,7 @@
 <p>locate inside home dirrectory</p>
 <p><code>cd ~</code></p>
 <p>install git and make</p>
-<p><code>apt install git make</code></p>
+<p><code>apt-get install git make</code></p>
 <p>clone repo to linux machine:</p>
 <p><code>git clone https://github.com/Ivashkka/demo_exam.git</code></p>
 <p>move inside:</p>
@@ -44,11 +44,57 @@
 <p>follow the instructions</p>
 <br>
 <p><b>all apt package requirements:</b></p>
-<pre>net-tools
-bind-utils
-nftables
+<pre>
+packages:
+  - name: net-tools
+    hosts: ALL
+    task: 0
+  - name: bind-utils
+    hosts: ALL
+    task: 0
+  - name: nano
+    hosts: ALL
+    task: 0
+  - name: nftables
+    hosts: ALL
+    task: 0
+    units: [nftables.service]
+  - name: openssh-server
+    hosts: ALL
+    task: 0
+    units: [sshd.service]
+  - name: NetworkManager
+    hosts: ALL
+    task: 0
+    units: [NetworkManager.service]
+  - name: NetworkManager-tui
+    hosts: ALL
+    task: 0
+  - name: frr
+    hosts: [HQ-R, BR-R]
+    task: 1.2
+    units: [frr.service]
+  - name: strongswan
+    hosts: [HQ-R, BR-R]
+    task: 1.2
+    units: [ipsec.service]
+  - name: dhcp-server
+    hosts: [HQ-R]
+    task: 1.3
+    units: [dhcpd.service, dhcpd6.service]
+  - name: radvd
+    hosts: [HQ-R]
+    task: 1.3
+    units: [radvd.service]
+  - name: iperf3
+    hosts: [HQ-R, ISP]
+    task: 1.5
+  - name: etc-bckp
+    hosts: [HQ-R, BR-R]
+    task: 1.6
+    install: None
+    units: [etc_bckp.timer]
 </pre>
-<p>you can run <code>apt install < apt_requirements.txt</code> to install all at once</p>
 <br>
 <p><b>network topology</b></p>
 <img src="./demo.svg">
