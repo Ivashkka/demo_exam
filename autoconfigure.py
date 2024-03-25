@@ -144,14 +144,14 @@ def get_max_marker_name_len():
 def ask_for_new(motd : str, default, rjust_size : int = 0, canskip = True):
     while True:
         resp = input(motd)
+        if not canskip:
+            if resp == None or resp == '': continue
         data = resp if resp != '' else default
         question = f'будет присвоено значение - {data} (y/n): ' if localization == 'ru' else f'setting - {data} (y/n): '
         while True:
             approve = input(' '*rjust_size+question)
             if approve == 'y' or approve == 'n' or approve == '': break
-        if approve != 'n':
-            if canskip: break
-            elif approve != '': break
+        if approve != 'n': break
     return data
 
 
