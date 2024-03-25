@@ -328,7 +328,7 @@ def enable_units(indetail : bool = False):
             break
         print_with_localization(f"\nenable all new services in systemd? (y/n)", "\n"+f"включить запуск всех установленных сервисов в systemd? (y/n)", endl='', color='\033[92m')
         resp = input()
-        if resp == 'n' or resp == 'y' or resp == '':
+        if resp == 'n' or resp == 'y':
             break
     if resp == 'n': return
     units = []
@@ -499,7 +499,7 @@ def reboot_or_not(indetail : bool = False):
         print_with_localization("\nreboot? (y/n)", '\n'+"перезагрузиться? (y/n)", endl=' ')
         print_with_localization("recommended - y", "рекомендуется - y", endl=': ', color='\033[91m')
         resp = input()
-        if resp == '' or resp == 'y' or resp == 'n': break
+        if resp == 'y' or resp == 'n': break
     if resp != 'n':
         subprocess.call('reboot'.split())
 
@@ -538,8 +538,8 @@ def main():
         #if not indetail: break
         print_with_localization("apply configuration to host?(irreversible) (y/n)", "применить конфигурацию к хосту?(необратимо) (y/n)", endl=': ', color='\033[92m')
         resp = input()
-        if resp == '' or resp == 'y' or resp == 'n': break
-    if resp != 'n':
+        if resp == 'y' or resp == 'n': break
+    if resp == 'y':
         apply_configuration()
         time.sleep(1)
         enable_units(True)
