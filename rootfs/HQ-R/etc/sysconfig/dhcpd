@@ -1,0 +1,6 @@
+# The following variables are recognized:
+
+DHCPDARGS=HQ-SRV-IF
+
+# Default value if chroot mode disabled.
+#CHROOT="-j / -lf /var/lib/dhcp/dhcpd/state/dhcpd.leases"
