@@ -63,6 +63,19 @@ filemap:
         en-desc: Ipv6 address of ISP
         value: $ISP-IF-IP6$value|get_first_addr
 
+    - name: NFT # router
+      ru-desc: Некоторые параметры для nftables
+      en-desc: Some parameters for nftables
+      members:
+      - name: BR-SRV-IP4
+        ru-desc: Ipv4 адрес BR-SRV
+        en-desc: Ipv4 address of BR-SRV
+        value: $BR-SRV-IF-IP4$value|get_next_addr
+      - name: BR-SRV-IP6
+        ru-desc: Ipv6 адрес BR-SRV
+        en-desc: Ipv6 address of BR-SRV
+        value: $BR-SRV-IF-IP6$value|get_next_addr
+
     - name: DNS # dns
       ru-desc: Настройка имен интерфейсов
       en-desc: Interfaces names setup
