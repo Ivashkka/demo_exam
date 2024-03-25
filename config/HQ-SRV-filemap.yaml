@@ -34,6 +34,19 @@ filemap:
           en-desc: Ipv6 mask for $GENERIC-MEMBER$value interface
           values: [112]
 
+    - name: RTR # router
+      ru-desc: Адреса роутера
+      en-desc: Router addresses
+      members:
+      - name: HQ-R-IP4
+        ru-desc: Ipv4 адрес HQ-R
+        en-desc: Ipv4 address of HQ-R
+        value: $HQ-R-IF-IP4$value|get_first_addr
+      - name: HQ-R-IP6
+        ru-desc: Ipv6 адрес HQ-R
+        en-desc: Ipv6 address of HQ-R
+        value: $HQ-R-IF-IP6$value|get_first_addr
+
     - name: DNS # dns
       ru-desc: Настройка серверов DNS
       en-desc: DNS servers setup

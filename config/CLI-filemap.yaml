@@ -34,6 +34,19 @@ filemap:
           en-desc: Ipv6 mask for $GENERIC-MEMBER$value interface
           values: [124]
 
+    - name: RTR # router
+      ru-desc: Адреса роутера
+      en-desc: Router addresses
+      members:
+      - name: ISP-IP4
+        ru-desc: Ipv4 адрес ISP
+        en-desc: Ipv4 address of ISP
+        value: $ISP-IF-IP4$value|get_first_addr
+      - name: ISP-IP6
+        ru-desc: Ipv6 адрес ISP
+        en-desc: Ipv6 address of ISP
+        value: $ISP-IF-IP6$value|get_first_addr
+
     - name: DNS # dns
       ru-desc: Настройка серверов DNS
       en-desc: DNS servers setup
