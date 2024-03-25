@@ -79,11 +79,11 @@ filemap:
         ru-desc: Ipv4 адрес правой границы диапазона DHCP
         en-desc: Ipv4 address right border of DHCP range
         value: $HQ-SRV-IF-IP4$value|get_addr|200
-      - name: DHCP-RANGE-LEFT-IP6
+      - name: DHCP6-RANGE-LEFT-IP6
         ru-desc: Ipv6 адрес левой границы диапазона DHCP
         en-desc: Ipv6 address left border of DHCP range
         value: $HQ-SRV-IF-IP6$value|get_addr|100
-      - name: DHCP-RANGE-RIGHT-IP6
+      - name: DHCP6-RANGE-RIGHT-IP6
         ru-desc: Ipv6 адрес правой границы диапазона DHCP
         en-desc: Ipv6 address right border of DHCP range
         value: $HQ-SRV-IF-IP6$value|get_addr|200
