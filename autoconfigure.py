@@ -141,7 +141,7 @@ def get_max_marker_name_len():
     return max(maxpref + maxpost, maxlen)
 
 
-def ask_for_new(motd : str, default, rjust_size : int = 0):
+def ask_for_new(motd : str, default, rjust_size : int = 0, canskip = True):
     while True:
         resp = input(motd)
         data = resp if resp != '' else default
@@ -149,7 +149,9 @@ def ask_for_new(motd : str, default, rjust_size : int = 0):
         while True:
             approve = input(' '*rjust_size+question)
             if approve == 'y' or approve == 'n' or approve == '': break
-        if approve != 'n': break
+        if approve != 'n':
+            if canskip: break
+            elif approve != '': break
     return data
 
 
@@ -162,8 +164,8 @@ def get_new_marker_or_keep_old(marker : dict, rjust_size : int):
     #         approve = input(' '*(rjust_size+3)+question)
     #         if approve == 'y' or approve == 'n' or approve == '': break
     #     if approve != 'n': break
-    
-    data = ask_for_new(f"\033[91m{marker['name'].rjust(rjust_size)}$\033[0m  {marker[f'{localization}-desc']} (default - {marker['value']}): ", marker['value'], rjust_size+3)
+    canskip = True if marker['value'] != None else False
+    data = ask_for_new(f"\033[91m{marker['name'].rjust(rjust_size)}$\033[0m  {marker[f'{localization}-desc']} (default - {marker['value']}): ", marker['value'], rjust_size+3, canskip)
     new_marker = copy.deepcopy(marker)
     new_marker['value'] = data
     return new_marker
@@ -354,7 +356,7 @@ def approve_groups(indetail : bool = False):
             for member in group['members']:
                 if not check_if_marker_in_task(member): continue
                 fill_variables(member)
-                if ('noask' not in list(member.keys()) or member['noask'] == False) and indetail:
+                if ('noask' not in list(member.keys()) or member['noask'] == False) and (indetail or member['value'] == None):
                     new_group['members'].append(get_new_marker_or_keep_old(member, max_mark_name))
                 else:
                     #print(f'hidden marker {member['name']} value - {member['value']}')
@@ -367,7 +369,7 @@ def approve_groups(indetail : bool = False):
             new_markers = generic_markers_list(group['generic'])
             for member in new_markers:
                 if not check_if_marker_in_task(member): continue
-                if ('noask' not in list(member.keys()) or member['noask'] == False) and indetail:
+                if ('noask' not in list(member.keys()) or member['noask'] == False) and (indetail or member['value'] == None):
                     new_group['members'].append(get_new_marker_or_keep_old(member, max_mark_name))
                 else:
                     #print(f'hidden marker {member['name']} value - {member['value']}')
