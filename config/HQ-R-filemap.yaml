@@ -138,7 +138,7 @@ filemap:
     add:
       markers: [TUN-IF]
       files:
-      - etc/net/ifaces/TUN-IF
+      - etc/NetworkManager/system-connections/TUN-IF.nmconnection
       - etc/strongswan
       - etc/frr
   - index: 1.3
