@@ -420,7 +420,6 @@ def reword_files(dpath : str, indetail : bool = False):
         for file_name in files:
             try:
                 file_path = os.path.join(root, file_name)
-                if indetail: print(file_path)
                 with open(file_path, 'r') as f:
                     data = f.read()
                 for mark in list(replace_dict.keys()):
@@ -434,8 +433,9 @@ def reword_files(dpath : str, indetail : bool = False):
                         replaces += 1
                 with open(file_path, 'w') as f:
                     f.write(data)
+                if indetail: print(file_path)
             except Exception as e:
-                print("\033[93mwarn reword_files\033[0m: " + str(e))
+                print("\033[93mwarn reword_files\033[0m: " + str(e) + f"  {file_path}")
     if replaces < 5: print("\033[93mwarn reword_files\033[0m: " + "too fiew replaces. maybe corrupted tmp files or filemap")
 
 
