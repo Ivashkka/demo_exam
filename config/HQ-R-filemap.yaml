@@ -48,7 +48,7 @@ filemap:
       - name: BR-R-IP4
         ru-desc: Ipv4 адрес BR-R внешний
         en-desc: Ipv4 address of BR-R external
-        value: $TUN-IF-IP4$value|get_next_addr
+        value: 33.33.33.2
 
     - name: RTR # router
       ru-desc: Адреса роутера
