@@ -26,11 +26,11 @@ deploy: # VirtualBox vms and network topology
     task: 0
     units: [sshd.service]
   - name: NetworkManager
-    hosts: [HQ-SRV]
+    hosts: All
     task: 1.3
     units: [NetworkManager.service]
   - name: NetworkManager-tui
-    hosts: [HQ-SRV]
+    hosts: All
     task: 1.3
   - name: frr
     hosts: [HQ-R, BR-R]
