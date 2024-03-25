@@ -425,7 +425,7 @@ def reword_files(dpath : str, indetail : bool = False):
                     data = f.read()
                 for mark in list(replace_dict.keys()):
                     if mark in file_name:
-                        new_fn = file_name.replace(mark, replace_dict['mark'])
+                        new_fn = file_name.replace(mark, replace_dict[mark])
                         rename_file(file_path, os.path.join(root, new_fn))
                         file_path = os.path.join(root, new_fn)
                         replaces += 1
