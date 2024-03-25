@@ -521,30 +521,30 @@ def main():
             break
         except: pass
     time.sleep(1)
-    install_packages(indetail)
+    install_packages(True)
     time.sleep(1)
-    create_users(indetail)
+    create_users(True)
     time.sleep(1)
     print('')
     approve_groups(indetail)
     time.sleep(1)
     sort_markers()
-    rewrite_tmp_files(indetail)
+    rewrite_tmp_files(True)
     time.sleep(1)
     resp = ''
     while True:
-        if not indetail: break
+        #if not indetail: break
         print_with_localization("apply configuration to host?(irreversible) (y/n)", "применить конфигурацию к хосту?(необратимо) (y/n)", endl=': ', color='\033[92m')
         resp = input()
         if resp == '' or resp == 'y' or resp == 'n': break
     if resp != 'n':
         apply_configuration()
         time.sleep(1)
-        enable_units(indetail)
+        enable_units(True)
         time.sleep(1)
         print_vbox_net_map()
         time.sleep(1)
-        reboot_or_not(indetail)
+        reboot_or_not(True)
 
 
 if __name__ == '__main__':
