@@ -4,9 +4,7 @@ flush ruleset
 
 table inet filter {
 	chain input {
-		type filter hook input priority filter; policy accept;
-		ip saddr HQ-R-IF-NET4/HQ-R-IF-MASK4 tcp dport 2222 counter drop;
-		ip6 saddr HQ-R-IF-NET6/HQ-R-IF-MASK6 tcp dport 2222 counter drop;
+		type filter hook input priority filter;
 	}
 	chain forward {
 		type filter hook forward priority filter;
