@@ -1,0 +1,20 @@
+#!/usr/sbin/nft -f
+
+flush ruleset
+
+table inet filter {
+	chain input {
+		type filter hook input priority filter; policy accept;
+		ip tcp dport 22 counter drop
+		ip saddr CLI-NET4/CLI-MASK4 tcp dport 22 counter accept;
+		ip6 saddr CLI-NET6/CLI-MASK6 tcp dport 22 counter accept;
+		ip saddr BR-SRV-NET4/BR-SRV-MASK4 tcp dport 22 counter accept;
+		ip6 saddr BR-SRV-NET6/BR-SRV-MASK6 tcp dport 22 counter accept;
+	}
+	chain forward {
+		type filter hook forward priority filter;
+	}
+	chain output {
+		type filter hook output priority filter;
+	}
+}

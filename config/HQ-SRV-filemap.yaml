@@ -60,10 +60,59 @@ filemap:
         en-desc: Ipv4 address as second dns
         value: 8.8.4.4
 
+    - name: PF
+      ru-desc: Настройка пакетного фильтра для ssh
+      en-desc: Packet filter setup for ssh
+      members:
+      - name: CLI-IP4
+        ru-desc: Ipv4 адрес CLI
+        en-desc: Ipv4 address of CLI
+        value: 11.11.11.2
+      - name: CLI-MASK4
+        ru-desc: Ipv4 маска подсети у CLI
+        en-desc: Ipv4 network mask of CLI
+        value: 24
+      - name: BR-SRV-IP4
+        ru-desc: Ipv4 адрес BR-SRV
+        en-desc: Ipv4 address of BR-SRV
+        value: 192.168.2.2
+      - name: BR-SRV-MASK4
+        ru-desc: Ipv4 маска подсети у BR-SRV
+        en-desc: Ipv4 network mask of BR-SRV
+        value: 24
+      - name: CLI-IP6
+        ru-desc: Ipv6 адрес CLI
+        en-desc: Ipv6 address of CLI
+        value: 2000:1111::2
+      - name: CLI-MASK6
+        ru-desc: Ipv6 маска подсети у CLI
+        en-desc: Ipv6 network mask of CLI
+        value: 124
+      - name: BR-SRV-IP6
+        ru-desc: Ipv6 адрес BR-SRV
+        en-desc: Ipv6 address of BR-SRV
+        value: 2000:2::1:2
+      - name: BR-SRV-MASK6
+        ru-desc: Ipv6 маска подсети у BR-SRV
+        en-desc: Ipv6 network mask of BR-SRV
+        value: 112
+
     - name: NOASK # auto generated params
       noask: true
       generic:
         src-group: IPS
+        iterate:
+        - replace: IP4 NET4
+          noask: true
+          value: $GENERIC-MEMBER$value|get_zero_addr
+        - replace: IP6 NET6
+          noask: true
+          value: $GENERIC-MEMBER$value|get_zero_addr
+
+    - name: PFNETS # auto generated params for pf
+      noask: true
+      generic:
+        src-group: PF
         iterate:
         - replace: IP4 NET4
           noask: true
@@ -77,3 +126,9 @@ filemap:
     redefine:
       files:
       - etc/NetworkManager/system-connections/HQ-R-IF.nmconnection etc/NetworkManager/system-connections/HQ-R-IF-dhcp.nmconnection
+  - index: 1.8
+    redefine:
+      files:
+      - etc/nftables/nftables.nft etc/nftables/nftables-pf.nft
+    add:
+      groups: [PF, PFNETS]

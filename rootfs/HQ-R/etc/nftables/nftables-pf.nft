@@ -17,8 +17,8 @@ table inet filter {
 table inet nat {
 	chain prerouting {
 		type nat hook prerouting priority 0; policy accept;
-		ip daddr ISP-IF-IP4 tcp dport 2222 dnat ip to HQ-SRV-IP4:2222
-		ip6 daddr ISP-IF-IP6 tcp dport 2222 dnat ip6 to [HQ-SRV-IP6]:2222
+		ip daddr ISP-IF-IP4 tcp dport 2222 dnat ip to HQ-SRV-IP4:22
+		ip6 daddr ISP-IF-IP6 tcp dport 2222 dnat ip6 to [HQ-SRV-IP6]:22
 	}
 	chain postrouting {
 		type nat hook postrouting priority 0; policy accept;
